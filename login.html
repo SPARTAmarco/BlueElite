@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Blu élite Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Montserrat", "sans-serif"],
+                        serif: ["Playfair Display", "serif"],
+                    },
+                    colors: {
+                        navy: "hsl(213 80% 22%)",
+                        pool: "hsl(199 76% 54%)",
+                        "pool-light": "hsl(199 100% 95%)",
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-navy font-sans text-white overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1920"
+            alt="Piscina Background" class="w-full h-full object-cover opacity-30" />
+        <div class="absolute inset-0 bg-gradient-to-br from-navy via-navy/90 to-transparent"></div>
+    </div>
+
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            75% { transform: translateX(-8px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+    </style>
+
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-2xl">
+            <div class="text-center mb-10">
+                <div class="flex justify-center mb-4">
+                    <img src="assets/logo-bluelite.png" alt="Blu élite Logo" class="h-16 w-auto">
+                </div>
+                <h1 class="text-4xl font-serif italic tracking-tighter mb-2">Blu élite<span
+                        class="text-pool font-sans">.</span></h1>
+                <p class="text-white/60 text-sm font-medium">Accedi all'area amministrativa</p>
+            </div>
+
+            <!-- Error Alert -->
+            <div id="error-alert" class="hidden mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl flex items-center gap-3 animate-shake">
+                <i data-lucide="alert-circle" class="w-5 h-5 text-red-400"></i>
+                <p id="error-text" class="text-red-200 text-xs font-bold uppercase tracking-wider"></p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-pool">Email</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </span>
+                        <input type="email" required
+                            class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-pool transition-all" />
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-pool">Password</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40">
+                            <i data-lucide="lock" class="w-5 h-5"></i>
+                        </span>
+                        <input type="password" required placeholder="••••••••"
+                            class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-pool transition-all" />
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs pt-2">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <div class="relative flex items-center justify-center">
+                            <input type="checkbox" id="remember-me" class="peer hidden" />
+                            <div
+                                class="w-4 h-4 rounded border border-white/20 peer-checked:bg-pool peer-checked:border-pool transition-all">
+                            </div>
+                            <i data-lucide="check"
+                                class="w-3 h-3 text-white absolute opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></i>
+                        </div>
+                        <span class="text-white/60 group-hover:text-white">Ricordami</span>
+                    </label>
+                    <a href="#" class="text-pool hover:underline">Password dimenticata?</a>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-pool hover:bg-pool/90 text-white font-bold py-4 rounded-2xl shadow-lg shadow-pool/20 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2">
+                    Accedi <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </form>
+
+            <div class="mt-10 text-center text-xs text-white/40">
+                <p>&copy; 2025 Blu élite Piscine. Area riservata.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Supabase Configuration
+        const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        const loginForm = document.getElementById('login-form');
+        const errorAlert = document.getElementById('error-alert');
+        const errorText = document.getElementById('error-text');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            const password = e.target.querySelector('input[type="password"]').value;
+            const btn = e.target.querySelector('button');
+
+            errorAlert.classList.add('hidden');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></span> Entrando...';
+
+            const { data, error } = await _supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                // Traduzione errori comuni
+                let msg = error.message;
+                if (msg.includes('Invalid login credentials')) msg = 'Email o Password errate';
+                if (msg.includes('Email not confirmed')) msg = 'Email non ancora confermata';
+
+                errorText.innerText = msg;
+                errorAlert.classList.remove('hidden');
+                
+                // Shake effect on form
+                loginForm.classList.add('animate-shake');
+                setTimeout(() => loginForm.classList.remove('animate-shake'), 500);
+
+                btn.disabled = false;
+                btn.innerHTML = 'Accedi <i data-lucide="arrow-right" class="w-5 h-5"></i>';
+                lucide.createIcons();
+            } else {
+                // Gestione Ricordami
+                const rememberMe = document.getElementById('remember-me').checked;
+                if (rememberMe) {
+                    localStorage.setItem('bluelite_email', email);
+                } else {
+                    localStorage.removeItem('bluelite_email');
+                }
+                window.location.href = 'admin.html';
+            }
+        });
+
+        // Pre-compila email se salvata
+        window.onload = () => {
+            const savedEmail = localStorage.getItem('bluelite_email');
+            if (savedEmail) {
+                document.querySelector('input[type="email"]').value = savedEmail;
+                document.getElementById('remember-me').checked = true;
+            }
+        };
+    </script>
+</body>
+
+</html>
