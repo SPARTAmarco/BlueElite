@@ -90,7 +90,7 @@
 .date-filter-btn.active { background-color: #ffffff; color: #08306A; box-shadow: 0 4px 12px -2px rgba(8, 48, 106, 0.1); }
 .dark .date-filter-btn.active { background-color: #1e3a5a; color: #ffffff; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; font-size: 90%; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { 
   font-family: var(--font-sans); 
   background-color: var(--color-background);
