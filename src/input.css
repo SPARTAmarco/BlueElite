@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", "sans-serif";
+  --font-serif: "Playfair Display", "serif";
+
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(213 80% 22%);
+  
+  --color-primary: hsl(199 76% 54%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  
+  --color-secondary: hsl(199 100% 95%);
+  
+  --color-muted: hsl(199 30% 95%);
+  --color-muted-foreground: hsl(213 20% 46%);
+  
+  --color-card: hsl(0 0% 100%);
+  --color-navy: hsl(213 80% 22%);
+  --color-pool: hsl(199 76% 54%);
+  --color-pool-light: hsl(199 100% 95%);
+  --color-pool-glow: hsl(199 76% 64%);
+  --color-gold: hsl(40 70% 55%);
+  --color-border: hsl(199 30% 88%);
+
+  --background-image-gradient-hero: linear-gradient(135deg, hsl(213 80% 12% / 0.85), hsl(199 76% 24% / 0.7));
+  --background-image-gradient-pool: linear-gradient(135deg, hsl(199 76% 54%), hsl(199 76% 44%));
+  --background-image-gradient-navy: linear-gradient(135deg, hsl(213 80% 15%), hsl(213 80% 25%));
+
+  --shadow-card: 0 8px 32px -8px hsl(213 80% 22% / 0.1);
+  --shadow-card-hover: 0 16px 48px -12px hsl(199 76% 54% / 0.2);
+  --shadow-hero: 0 20px 60px -15px hsl(213 80% 22% / 0.3);
+
+  @keyframes water-shimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  --animate-water-shimmer: water-shimmer 3s ease-in-out infinite;
+}
+
+@utility text-gradient-pool {
+  background-clip: text;
+  color: transparent;
+  background-image: var(--background-image-gradient-pool);
+}
+
+@utility animate-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+@utility animate-fade-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+@utility animate-fade-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+@utility animate-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible States triggered by JS */
+.visible.animate-fade-up { opacity: 1; transform: translateY(0); }
+.visible.animate-fade-left { opacity: 1; transform: translateX(0); }
+.visible.animate-fade-right { opacity: 1; transform: translateX(0); }
+.visible.animate-scale-in { opacity: 1; transform: scale(1); }
+
+/* Admin Dashboard specific styles */
+.dark body { background-color: #0c1a2b; color: #f8fafc; }
+.dark .bg-white { background-color: #162a41; border-color: #1e3a5a; }
+.dark .text-navy { color: #e2e8f0; }
+.dark .border-border { border-color: #1e3a5a; }
+.dark .bg-muted { background-color: #0f243a; }
+.dark .text-slate-500 { color: #94a3b8; }
+.dark .divide-border > * + * { border-color: #1e3a5a; }
+.dark tr:hover { background-color: #1e3a5a !important; }
+
+/* Date Filter Tabs Styles */
+.date-filter-btn { color: #94a3b8; }
+.date-filter-btn.active { background-color: #ffffff; color: #08306A; box-shadow: 0 4px 12px -2px rgba(8, 48, 106, 0.1); }
+.dark .date-filter-btn.active { background-color: #1e3a5a; color: #ffffff; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { 
+  font-family: var(--font-sans); 
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}

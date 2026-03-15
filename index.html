@@ -12,100 +12,22 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
     rel="stylesheet">
 
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Blu élite - Progettazione e costruzione di piscine di lusso su misura a Bergamo. Eccellenza artigianale e design esclusivo per la tua oasi di benessere." />
+  <meta name="keywords"
+    content="piscine lusso bergamo, costruzione piscine, design piscine, piscine interrate lusso, blu elite piscine" />
+  <meta property="og:title" content="Blu élite Piscine di Lusso" />
+  <meta property="og:description" content="Progettiamo e costruiamo la piscina dei tuoi sogni a Bergamo e provincia." />
+  <meta property="og:image" content="assets/hero-pool.avif" />
+  <meta property="og:type" content="website" />
+  <link rel="manifest" href="manifest.json" />
+
+
+
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Montserrat", "sans-serif"],
-            serif: ["Playfair Display", "serif"],
-          },
-          colors: {
-            background: "hsl(0 0% 100%)",
-            foreground: "hsl(213 80% 22%)",
-            primary: {
-              DEFAULT: "hsl(199 76% 54%)",
-              foreground: "hsl(0 0% 100%)",
-            },
-            secondary: "hsl(199 100% 95%)",
-            muted: {
-              DEFAULT: "hsl(199 30% 95%)",
-              foreground: "hsl(213 20% 46%)",
-            },
-            card: "hsl(0 0% 100%)",
-            navy: "hsl(213 80% 22%)",
-            pool: "hsl(199 76% 54%)",
-            "pool-light": "hsl(199 100% 95%)",
-            "pool-glow": "hsl(199 76% 64%)",
-            gold: "hsl(40 70% 55%)",
-            border: "hsl(199 30% 88%)"
-          },
-          backgroundImage: {
-            "gradient-hero": "linear-gradient(135deg, hsl(213 80% 12% / 0.85), hsl(199 76% 24% / 0.7))",
-            "gradient-pool": "linear-gradient(135deg, hsl(199 76% 54%), hsl(199 76% 44%))",
-            "gradient-navy": "linear-gradient(135deg, hsl(213 80% 15%), hsl(213 80% 25%))"
-          },
-          boxShadow: {
-            card: "0 8px 32px -8px hsl(213 80% 22% / 0.1)",
-            "card-hover": "0 16px 48px -12px hsl(199 76% 54% / 0.2)",
-            hero: "0 20px 60px -15px hsl(213 80% 22% / 0.3)"
-          },
-          keyframes: {
-            "water-shimmer": {
-              "0%, 100%": { opacity: "0.3" },
-              "50%": { opacity: "0.6" },
-            },
-          },
-          animation: {
-            "water-shimmer": "water-shimmer 3s ease-in-out infinite",
-          },
-        },
-      },
-    }
-  </script>
-
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .text-gradient-pool {
-        @apply bg-clip-text text-transparent bg-gradient-pool;
-      }
-      
-      /* Scroll Animations Init States */
-      .animate-fade-up {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      }
-      .animate-fade-left {
-        opacity: 0;
-        transform: translateX(-30px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      }
-      .animate-fade-right {
-        opacity: 0;
-        transform: translateX(30px);
-        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      }
-      .animate-scale-in {
-        opacity: 0;
-        transform: scale(0.9);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
-
-      /* Visible States triggered by JS */
-      .visible.animate-fade-up { opacity: 1; transform: translateY(0); }
-      .visible.animate-fade-left { opacity: 1; transform: translateX(0); }
-      .visible.animate-fade-right { opacity: 1; transform: translateX(0); }
-      .visible.animate-scale-in { opacity: 1; transform: scale(1); }
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Montserrat', sans-serif; @apply bg-background text-foreground antialiased; }
-  </style>
+  <link rel="stylesheet" href="dist/output.css">
 </head>
 
 <body>
@@ -200,7 +122,7 @@
   <main>
     <section id="hero" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1920');">
+        style="background-image: url('assets/hero-pool.avif');">
       </div>
       <div class="absolute inset-0 bg-gradient-hero"></div>
       <div
@@ -270,7 +192,7 @@
           <div class="relative animate-fade-up scroll-elem" style="transition-delay: 200ms;">
             <div
               class="aspect-square rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500">
-              <img alt="Cantiere piscina" class="w-full h-full object-cover" src="assets/pool-interrata.jpg" />
+              <img alt="Cantiere piscina" class="w-full h-full object-cover" src="assets/pool-interrata.avif" />
             </div>
           </div>
         </div>
@@ -462,8 +384,10 @@
     <!-- STATISTICHE (DA OPZIONE 1 DENTRO IL LAYOUT DI OPZIONE 2) -->
     <section class="py-24 md:py-32 relative overflow-hidden bg-navy">
       <!-- Video Background -->
-      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-        <source src="assets/video-piscine-loop.mp4" type="video/mp4">
+      <video autoplay loop muted playsinline preload="auto" poster="assets/hero-pool.avif"
+        class="absolute inset-0 w-full h-full object-cover">
+        <source src="assets/output.webm" type="video/webm">
+        <source src="assets/output.mp4" type="video/mp4"> <!-- Fallback for Safari -->
       </video>
       <!-- Overlay for readability -->
       <div class="absolute inset-0 bg-navy/60 backdrop-blur-[2px]"></div>
@@ -864,12 +788,12 @@
 
     // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
     const projects = [
-      { img: 'assets/pool-infinity.jpg', title: 'Villa Panoramica', location: 'Bergamo Alta', type: 'Infinity' },
-      { img: 'assets/pool-indoor.jpg', title: 'Grotta del Relax', location: 'Sarnico', type: 'Indoor' },
-      { img: 'assets/pool-interrata.jpg', title: 'L\'Essenziale', location: 'Sotto il Monte', type: 'Interrata' },
-      { img: 'assets/pool-hotel.jpg', title: 'Lusso Alpino', location: 'Lago d\'Iseo', type: 'Hotel' },
-      { img: 'assets/pool-spa.jpg', title: 'Centro Benessere', location: 'Trescore Balneario', type: 'Spa' },
-      { img: 'assets/pool-portfolio1.jpg', title: 'Oasi Privata', location: 'Alzano Lombardo', type: 'Custom' },
+      { img: 'assets/pool-infinity.avif', title: 'Villa Panoramica', location: 'Bergamo Alta', type: 'Infinity' },
+      { img: 'assets/pool-indoor.avif', title: 'Grotta del Relax', location: 'Sarnico', type: 'Indoor' },
+      { img: 'assets/pool-interrata.avif', title: 'L\'Essenziale', location: 'Sotto il Monte', type: 'Interrata' },
+      { img: 'assets/pool-hotel.avif', title: 'Lusso Alpino', location: 'Lago d\'Iseo', type: 'Hotel' },
+      { img: 'assets/pool-spa.avif', title: 'Centro Benessere', location: 'Trescore Balneario', type: 'Spa' },
+      { img: 'assets/pool-portfolio1.avif', title: 'Oasi Privata', location: 'Alzano Lombardo', type: 'Custom' },
     ];
 
     const portfolioGrid = document.getElementById('portfolio-grid');
@@ -959,21 +883,9 @@
 
     counters.forEach(c => statsObserver.observe(c));
 
-    // 6. FORM SUBMIT SIMULATION
-    const contactForm = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const successMsg = document.getElementById('success-msg');
+    // 6. FORM SUBMIT SIMULATION (RIMOSSO - LOGICA GESTITA DA SUPABASE)
+    // contactForm.addEventListener('submit', (e) => { ... });
 
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      submitBtn.innerText = '✓ Messaggio inviato!';
-      successMsg.classList.remove('hidden');
-      setTimeout(() => {
-        submitBtn.innerText = 'Invia Richiesta';
-        successMsg.classList.add('hidden');
-        contactForm.reset();
-      }, 4000);
-    });
   </script>
 </body>
 
