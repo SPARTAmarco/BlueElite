@@ -2,15 +2,13 @@
 <html lang="it">
 
 <head>
+  <script type="text/javascript" src="https://embeds.iubenda.com/widgets/6ffa42ea-705b-44e9-b2a7-79fc01d9d48d.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blu élite Piscine di Lusso</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-    rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
 
   <!-- SEO Meta Tags -->
   <meta name="description"
@@ -26,7 +24,8 @@
 
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+  <script src="scripts/supabase.js"></script>
   <link rel="stylesheet" href="dist/output.css">
 </head>
 
@@ -497,6 +496,16 @@
                   placeholder="Descrivi il tuo progetto ideale..."></textarea>
               </div>
 
+              <div class="flex items-start gap-4 animate-fade-up scroll-elem">
+                <input id="privacy" type="checkbox" required
+                  class="mt-1 w-5 h-5 rounded border-border text-pool focus:ring-pool focus:ring-offset-background transition-all cursor-pointer">
+                <label for="privacy" class="text-sm text-muted-foreground leading-relaxed">
+                  Dichiaro di aver letto l’<a href="privacy.html" target="_blank"
+                    class="text-pool font-semibold hover:underline">informativa sulla privacy</a> e acconsento al
+                  trattamento dei dati personali ai sensi del GDPR. *
+                </label>
+              </div>
+
               <button type="submit" id="submit-btn"
                 class="w-full py-4 rounded-xl bg-pool text-primary-foreground font-bold text-lg tracking-wide hover:bg-pool-glow transition-all duration-300 hover:shadow-card-hover hover:scale-[1.02]">
                 Invia Richiesta
@@ -597,9 +606,9 @@
               </div>
             </div>
             <div class="rounded-2xl overflow-hidden shadow-card h-64 bg-muted flex items-center justify-center">
-              <iframe title="Posizione Blu élite Piscine"
+              <!-- <iframe title="Posizione Blu élite Piscine"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89269.83984368564!2d9.593880410766023!3d45.69614451006509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47815104ec501865%3A0x6b8eb08447817eb4!2sBergamo%20BG!5e0!3m2!1sit!2sit!4v1700000000000"
-                width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy"></iframe>
+                width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy"></iframe> -->
             </div>
           </div>
         </div>
@@ -685,12 +694,10 @@
           © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX — Realizzato per l'eccellenza
         </p>
         <div class="flex gap-8">
-          <a href="#"
-            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">Privacy
-            Policy</a>
-          <a href="#"
-            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">Cookie
-            Policy</a>
+          <a href="privacy.html" target="_blank"
+          class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
+          Privacy Policy e Cookie Policy
+          </a>
         </div>
       </div>
     </div>
