@@ -4,12 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
   <title>Admin Dashboard | Blu élite Piscine</title>
 
-  <link rel="stylesheet" href="fonts.css">
+  <link rel="preload" href="fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="fonts.css"></noscript>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+  <script defer src="scripts\lucide.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+  <script defer src="scripts/supabase.js"></script>
   <script>
     // Security Check
     (async () => {
@@ -17,14 +21,37 @@
       const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
       const sb = supabase.createClient(supabaseUrl, supabaseKey);
       const { data: { session } } = await sb.auth.getSession();
-      if (!session) window.location.href = 'login.html';
+      if (!session) {
+        window.location.replace('login.html');
+      } else {
+        const showBody = () => { 
+          if (document.body) {
+              document.body.classList.remove('opacity-0');
+              document.body.style.pointerEvents = 'auto';
+          }
+        };
+        showBody();
+        window.addEventListener('DOMContentLoaded', showBody);
+      }
     })();
   </script>
   <link rel="stylesheet" href="dist/output.css">
 </head>
 
-<body class="bg-muted text-foreground min-h-screen transition-colors duration-300">
-  <!-- Top Navigation -->
+<body class="bg-muted text-foreground min-h-screen transition-all duration-700 opacity-0 pointer-events-none">
+  <div id="auth-check-container" class="flex items-center justify-center min-h-screen">
+    <div class="text-center">
+      <i data-lucide="loader-2" class="w-10 h-10 text-pool animate-spin mx-auto mb-4"></i>
+      <p class="text-navy font-semibold">Verifica credenziali in corso...</p>
+      <noscript>
+        <p class="text-red-500 font-bold mt-4">Errore: JavaScript è disabilitato.</p>
+        <p class="text-muted-foreground text-sm mt-2">Questa pagina richiede JavaScript per funzionare. Abilitalo e ricarica.</p>
+      </noscript>
+    </div>
+  </div>
+
+  <div id="admin-app" style="display: none;">
+    <!-- Top Navigation -->
   <nav class="bg-navy text-white p-4 sticky top-0 z-50 shadow-lg">
     <div class="container mx-auto flex justify-between items-center px-4">
       <div class="flex items-center gap-4">
@@ -180,6 +207,29 @@
 
     lucide.createIcons();
 
+    // Security Check
+    let sessionValid = false;
+    async function initAuth() {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (!session) {
+            window.location.replace('login.html');
+        } else {
+            sessionValid = true;
+            document.getElementById('auth-check-container').style.display = 'none';
+            document.getElementById('admin-app').style.display = 'block';
+            
+            // --- DATE NAVIGATION & DATA LOGIC ---
+            selectedDate = new Date();
+            selectedDate.setHours(0, 0, 0, 0);
+            isShowingAll = false;
+            
+            loadLeads();
+        }
+    }
+    
+    // Call init right away
+    initAuth();
+
     // Theme Toggle Logic
     const themeToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
@@ -216,12 +266,11 @@
       lucide.createIcons();
     });
 
-    // --- DATE NAVIGATION & DATA LOGIC ---
-    let selectedDate = new Date();
-    selectedDate.setHours(0, 0, 0, 0);
-    let isShowingAll = false;
+    let selectedDate;
+    let isShowingAll;
 
     function changeDate(days) {
+      if (!sessionValid) return;
       const targetDate = new Date(selectedDate);
       targetDate.setDate(targetDate.getDate() + days);
 
@@ -236,6 +285,7 @@
     }
 
     function showAllLeads() {
+      if (!sessionValid) return;
       isShowingAll = true;
       loadLeads();
     }
@@ -254,6 +304,7 @@
     }
 
     async function loadLeads() {
+      if (!sessionValid) return;
       const tableBody = document.getElementById('leads-body');
       const emptyState = document.getElementById('empty-state');
       const dateDisplay = document.getElementById('current-date-display');
@@ -320,34 +371,59 @@
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-muted/50 transition-colors cursor-pointer group';
             tr.onclick = () => showDetail(lead);
-            tr.innerHTML = `
-              <td class="p-4">
-                <div class="font-bold text-navy capitalize">${lead.nome} ${lead.cognome}</div>
-              </td>
-              <td class="p-4 text-xs">
-                <div class="flex items-center gap-2 mb-1"><i data-lucide="mail" class="w-3 h-3 text-pool"></i> ${lead.email}</div>
-                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-3 h-3 text-pool"></i> ${lead.telefono}</div>
-              </td>
-              <td class="p-4">
-                <span class="px-3 py-1 bg-pool/10 text-pool text-[9px] font-black uppercase rounded-full">
-                  ${lead.tipo || 'General'}
-                </span>
-              </td>
-              <td class="p-4 font-bold text-navy text-sm">${lead.budget || '-'}</td>
-              <td class="p-4 text-xs text-slate-500 max-w-[180px] truncate leading-relaxed italic">"${lead.messaggio}"</td>
-              <td class="p-4 text-[10px] text-slate-400 font-bold uppercase tracking-tighter">${new Date(lead.created_at).toLocaleDateString('it-IT')}</td>
-              <td class="p-4">
-                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase ${lead.is_read ? 'bg-pool/10 text-pool' : 'bg-orange-500/10 text-orange-500'
-              }">
-                  ${lead.is_read ? 'Letto' : 'Nuova'}
-                </span>
-              </td>
-              <td class="p-4 text-right">
-                <button onclick="event.stopPropagation(); deleteLead(${lead.id})" class="p-2 text-slate-300 hover:text-red-500 transition-colors">
-                  <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
-              </td>
+            
+            // Create cells safely
+            const clienteCell = document.createElement('td');
+            clienteCell.className = 'p-4';
+            const clienteDiv = document.createElement('div');
+            clienteDiv.className = 'font-bold text-navy capitalize';
+            clienteDiv.textContent = `${lead.nome} ${lead.cognome}`;
+            clienteCell.appendChild(clienteDiv);
+            
+            const contattiCell = document.createElement('td');
+            contattiCell.className = 'p-4 text-xs';
+            contattiCell.innerHTML = `
+                <div class="flex items-center gap-2 mb-1"><i data-lucide="mail" class="w-3 h-3 text-pool"></i> <span class="email-text"></span></div>
+                <div class="flex items-center gap-2"><i data-lucide="phone" class="w-3 h-3 text-pool"></i> <span class="phone-text"></span></div>
             `;
+            contattiCell.querySelector('.email-text').textContent = lead.email;
+            contattiCell.querySelector('.phone-text').textContent = lead.telefono;
+
+            const tipoCell = document.createElement('td');
+            tipoCell.className = 'p-4';
+            const tipoSpan = document.createElement('span');
+            tipoSpan.className = 'px-3 py-1 bg-pool/10 text-pool text-[9px] font-black uppercase rounded-full';
+            tipoSpan.textContent = lead.tipo || 'General';
+            tipoCell.appendChild(tipoSpan);
+
+            const budgetCell = document.createElement('td');
+            budgetCell.className = 'p-4 font-bold text-navy text-sm';
+            budgetCell.textContent = lead.budget || '-';
+
+            const msgCell = document.createElement('td');
+            msgCell.className = 'p-4 text-xs text-slate-500 max-w-[180px] truncate leading-relaxed italic';
+            msgCell.textContent = `"${lead.messaggio}"`;
+
+            const dateCell = document.createElement('td');
+            dateCell.className = 'p-4 text-[10px] text-slate-400 font-bold uppercase tracking-tighter';
+            dateCell.textContent = new Date(lead.created_at).toLocaleDateString('it-IT');
+
+            const statusCell = document.createElement('td');
+            statusCell.className = 'p-4';
+            const statusSpan = document.createElement('span');
+            statusSpan.className = `px-3 py-1 rounded-full text-[10px] font-black uppercase ${lead.is_read ? 'bg-pool/10 text-pool' : 'bg-orange-500/10 text-orange-500'}`;
+            statusSpan.textContent = lead.is_read ? 'Letto' : 'Nuova';
+            statusCell.appendChild(statusSpan);
+
+            const actionsCell = document.createElement('td');
+            actionsCell.className = 'p-4 text-right';
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'p-2 text-slate-300 hover:text-red-500 transition-colors';
+            deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+            deleteBtn.onclick = (e) => { e.stopPropagation(); deleteLead(lead.id); };
+            actionsCell.appendChild(deleteBtn);
+
+            tr.append(clienteCell, contattiCell, tipoCell, budgetCell, msgCell, dateCell, statusCell, actionsCell);
             tableBody.appendChild(tr);
           });
         }
@@ -358,6 +434,7 @@
     }
 
     function showDetail(lead) {
+      if (!sessionValid) return;
       const modal = document.getElementById('modal');
       const content = document.getElementById('modal-content');
       const markReadBtn = document.getElementById('mark-read-btn');
@@ -366,36 +443,42 @@
         <div class="grid grid-cols-2 gap-4 mb-6">
           <div class="bg-pool/10 p-5 rounded-2xl border border-pool/20">
             <p class="text-[10px] uppercase font-black text-pool mb-1">Tipologia Piscina</p>
-            <p class="text-xl font-bold text-navy capitalize">${lead.tipo || 'Non specificata'}</p>
+            <p class="text-xl font-bold text-navy capitalize" id="modal-tipo"></p>
           </div>
           <div class="bg-gold/10 p-5 rounded-2xl border border-gold/20">
             <p class="text-[10px] uppercase font-black text-gold mb-1">Budget Previsto</p>
-            <p class="text-xl font-bold text-navy">${lead.budget || '-'}</p>
+            <p class="text-xl font-bold text-navy" id="modal-budget"></p>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div class="bg-muted dark:bg-navy/50 p-4 rounded-xl">
              <p class="text-[10px] uppercase font-bold text-slate-400 mb-1">Cliente</p>
-             <p class="font-bold text-navy capitalize">${lead.nome} ${lead.cognome}</p>
+             <p class="font-bold text-navy capitalize" id="modal-cliente"></p>
           </div>
           <div class="bg-muted dark:bg-navy/50 p-4 rounded-xl">
              <p class="text-[10px] uppercase font-bold text-slate-400 mb-1">Telefono</p>
-             <p class="font-bold text-pool">${lead.telefono}</p>
+             <p class="font-bold text-pool" id="modal-telefono"></p>
           </div>
           <div class="bg-muted dark:bg-navy/50 p-4 rounded-xl col-span-2">
              <p class="text-[10px] uppercase font-bold text-slate-400 mb-1">Email</p>
-             <p class="font-bold text-navy truncate">${lead.email}</p>
+             <p class="font-bold text-navy truncate" id="modal-email"></p>
           </div>
         </div>
 
         <div>
            <p class="text-[10px] uppercase font-bold text-slate-400 mb-2">Messaggio del cliente</p>
-           <div class="bg-muted dark:bg-navy/50 p-6 rounded-xl text-navy italic leading-relaxed border-l-4 border-pool">
-             "${lead.messaggio}"
+           <div class="bg-muted dark:bg-navy/50 p-6 rounded-xl text-navy italic leading-relaxed border-l-4 border-pool" id="modal-msg">
            </div>
         </div>
       `;
+
+      document.getElementById('modal-tipo').textContent = lead.tipo || 'Non specificata';
+      document.getElementById('modal-budget').textContent = lead.budget || '-';
+      document.getElementById('modal-cliente').textContent = `${lead.nome} ${lead.cognome}`;
+      document.getElementById('modal-telefono').textContent = lead.telefono;
+      document.getElementById('modal-email').textContent = lead.email;
+      document.getElementById('modal-msg').textContent = `"${lead.messaggio}"`;
 
       if (lead.is_read) {
         markReadBtn.innerText = 'Già letta';
@@ -413,6 +496,7 @@
     }
 
     async function markAsRead(id) {
+      if (!sessionValid) return;
       const { error } = await _supabase
         .from('form_preventivi')
         .update({ is_read: true })
@@ -433,6 +517,7 @@
     }
 
     async function deleteLead(id) {
+      if (!sessionValid) return;
       if (!confirm('Vuoi eliminare definitivamente questa richiesta?')) return;
       const { error } = await _supabase
         .from('form_preventivi')
@@ -451,8 +536,8 @@
       window.location.href = 'login.html';
     }
 
-    window.onload = loadLeads;
   </script>
+  </div>
 </body>
 
 </html>

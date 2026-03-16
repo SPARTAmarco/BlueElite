@@ -2,13 +2,12 @@
 <html lang="it">
 
 <head>
-  <script type="text/javascript" src="https://embeds.iubenda.com/widgets/6ffa42ea-705b-44e9-b2a7-79fc01d9d48d.js"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blu élite Piscine di Lusso</title>
 
-  <link rel="stylesheet" href="fonts.css">
+  <link rel="preload" href="fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="fonts.css"></noscript>
 
   <!-- SEO Meta Tags -->
   <meta name="description"
@@ -23,9 +22,10 @@
 
 
 
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+  <script defer src="scripts/lucide.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
-  <script src="scripts/supabase.js"></script>
+  <script defer src="scripts/supabase.js"></script>
   <link rel="stylesheet" href="dist/output.css">
 </head>
 
@@ -516,57 +516,64 @@
           </div>
 
           <script>
-            // Supabase Configuration
-            const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
-            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+            document.addEventListener('DOMContentLoaded', () => {
+              // Supabase Configuration
+              const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
+              const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
+              const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-            // Form Submission Logic
-            document.getElementById('contact-form').addEventListener('submit', async function (e) {
-              e.preventDefault();
-              const submitBtn = document.getElementById('submit-btn');
-              const successMsg = document.getElementById('success-msg');
+              console.log(_supabase);
 
-              const formData = {
-                nome: document.getElementById('nome').value,
-                cognome: document.getElementById('cognome').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                tipo: document.getElementById('tipo').value,
-                budget: document.getElementById('budget').value,
-                messaggio: document.getElementById('messaggio').value
-              };
+              // Form Submission Logic
+              document.getElementById('contact-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const submitBtn = document.getElementById('submit-btn');
+                const successMsg = document.getElementById('success-msg');
 
-              // De-activate button during sending
-              submitBtn.disabled = true;
-              submitBtn.innerText = 'Invio in corso...';
+                const formData = {
+                  nome: document.getElementById('nome').value,
+                  cognome: document.getElementById('cognome').value,
+                  email: document.getElementById('email').value,
+                  telefono: document.getElementById('telefono').value,
+                  tipo: document.getElementById('tipo').value,
+                  budget: document.getElementById('budget').value,
+                  messaggio: document.getElementById('messaggio').value,
+                  privacy_accepted: document.getElementById('privacy').checked,
+                  privacy_policy_version: 'v1.0 (Marzo 2026)',
+                  privacy_timestamp: new Date().toISOString()
+                };
 
-              try {
-                // Save to Supabase
-                const { error } = await _supabase
-                  .from('form_preventivi')
-                  .insert([formData]);
+                // De-activate button during sending
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Invio in corso...';
 
-                if (error) throw error;
+                try {
+                  // Save to Supabase
+                  const { error } = await _supabase
+                    .from('form_preventivi')
+                    .insert([formData]);
 
-                // Feedback success
-                submitBtn.classList.add('hidden');
-                successMsg.classList.remove('hidden');
-                this.reset();
+                  if (error) throw error;
 
-                setTimeout(() => {
-                  submitBtn.classList.remove('hidden');
+                  // Feedback success
+                  submitBtn.classList.add('hidden');
+                  successMsg.classList.remove('hidden');
+                  this.reset();
+
+                  setTimeout(() => {
+                    submitBtn.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Invia Richiesta';
+                    successMsg.classList.add('hidden');
+                  }, 5000);
+
+                } catch (error) {
+                  console.error('Error saving lead:', error.message);
+                  alert('Si è verificato un errore nell\'invio della richiesta. Riprova più tardi.');
                   submitBtn.disabled = false;
                   submitBtn.innerText = 'Invia Richiesta';
-                  successMsg.classList.add('hidden');
-                }, 5000);
-
-              } catch (error) {
-                console.error('Error saving lead:', error.message);
-                alert('Si è verificato un errore nell\'invio della richiesta. Riprova più tardi.');
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'Invia Richiesta';
-              }
+                }
+              });
             });
           </script>
 
@@ -695,8 +702,8 @@
         </p>
         <div class="flex gap-8">
           <a href="privacy.html" target="_blank"
-          class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
-          Privacy Policy e Cookie Policy
+            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
+            Privacy Policy e Cookie Policy
           </a>
         </div>
       </div>
@@ -704,118 +711,119 @@
   </footer>
 
   <script>
-    // Inizializza le icone lucide (usate in servizi, ecc)
-    lucide.createIcons();
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inizializza le icone lucide (usate in servizi, ecc)
+      lucide.createIcons();
 
-    // 1. GESTIONE NAVBAR SCROLL & ACTIVE LINKS
-    const navbar = document.getElementById('navbar');
-    const logoText = document.getElementById('logo-text');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
+      // 1. GESTIONE NAVBAR SCROLL & ACTIVE LINKS
+      const navbar = document.getElementById('navbar');
+      const logoText = document.getElementById('logo-text');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
 
-    function updateHeaderTheme() {
-      const isScrolled = window.scrollY > 50;
-      const forceNavy = isScrolled || menuOpen;
+      function updateHeaderTheme() {
+        const isScrolled = window.scrollY > 50;
+        const forceNavy = isScrolled || menuOpen;
 
-      if (forceNavy) {
-        navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-        navbar.classList.remove('bg-transparent', 'py-6');
-        logoText.style.color = 'hsl(213, 80%, 22%)'; // Navy
-        navLinks.forEach(l => {
-          l.classList.remove('text-primary-foreground/90');
-          l.classList.add('text-navy');
-        });
-        bars.forEach(b => {
-          b.classList.remove('bg-white');
-          b.classList.add('bg-navy');
-        });
-      } else {
-        navbar.classList.add('bg-transparent', 'py-6');
-        navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-        logoText.style.color = 'white';
-        navLinks.forEach(l => {
-          l.classList.remove('text-navy');
-          l.classList.add('text-primary-foreground/90');
-        });
-        bars.forEach(b => {
-          b.classList.remove('bg-navy');
-          b.classList.add('bg-white');
-        });
-      }
-    }
-
-    window.addEventListener('scroll', updateHeaderTheme);
-
-    // 2. GESTIONE MENU MOBILE
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    let menuOpen = false;
-
-    function toggleMenu() {
-      menuOpen = !menuOpen;
-      updateHeaderTheme();
-
-      if (menuOpen) {
-        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-        mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-        // Perfect X: Bar 1 moves down, Bar 3 moves up, Bar 2 vanishes
-        bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
-        bars[1].style.opacity = '0';
-        bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
-      } else {
-        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-        mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-        bars[0].style.transform = 'translateY(0) rotate(0)';
-        bars[1].style.opacity = '1';
-        bars[2].style.transform = 'translateY(0) rotate(0)';
-      }
-    }
-    mobileMenuBtn.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-    // 3. ANIMAZIONI DI SCROLL (Intersection Observer)
-    document.querySelectorAll('.animate-scroll').forEach(el => {
-      el.classList.add('animate-fade-up');
-    });
-
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+        if (forceNavy) {
+          navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          navbar.classList.remove('bg-transparent', 'py-6');
+          logoText.style.color = 'hsl(213, 80%, 22%)'; // Navy
+          navLinks.forEach(l => {
+            l.classList.remove('text-primary-foreground/90');
+            l.classList.add('text-navy');
+          });
+          bars.forEach(b => {
+            b.classList.remove('bg-white');
+            b.classList.add('bg-navy');
+          });
+        } else {
+          navbar.classList.add('bg-transparent', 'py-6');
+          navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          logoText.style.color = 'white';
+          navLinks.forEach(l => {
+            l.classList.remove('text-navy');
+            l.classList.add('text-primary-foreground/90');
+          });
+          bars.forEach(b => {
+            b.classList.remove('bg-navy');
+            b.classList.add('bg-white');
+          });
         }
+      }
+
+      window.addEventListener('scroll', updateHeaderTheme);
+
+      // 2. GESTIONE MENU MOBILE
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+      let menuOpen = false;
+
+      function toggleMenu() {
+        menuOpen = !menuOpen;
+        updateHeaderTheme();
+
+        if (menuOpen) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+          // Perfect X: Bar 1 moves down, Bar 3 moves up, Bar 2 vanishes
+          bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
+          bars[1].style.opacity = '0';
+          bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          bars[0].style.transform = 'translateY(0) rotate(0)';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = 'translateY(0) rotate(0)';
+        }
+      }
+      mobileMenuBtn.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+      // 3. ANIMAZIONI DI SCROLL (Intersection Observer)
+      document.querySelectorAll('.animate-scroll').forEach(el => {
+        el.classList.add('animate-fade-up');
       });
-    }, observerOptions);
 
-    document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
-      scrollObserver.observe(el);
-    });
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
 
-    // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
-    const projects = [
-      { img: 'assets/pool-infinity.avif', title: 'Villa Panoramica', location: 'Bergamo Alta', type: 'Infinity' },
-      { img: 'assets/pool-indoor.avif', title: 'Grotta del Relax', location: 'Sarnico', type: 'Indoor' },
-      { img: 'assets/pool-interrata.avif', title: 'L\'Essenziale', location: 'Sotto il Monte', type: 'Interrata' },
-      { img: 'assets/pool-hotel.avif', title: 'Lusso Alpino', location: 'Lago d\'Iseo', type: 'Hotel' },
-      { img: 'assets/pool-spa.avif', title: 'Centro Benessere', location: 'Trescore Balneario', type: 'Spa' },
-      { img: 'assets/pool-portfolio1.avif', title: 'Oasi Privata', location: 'Alzano Lombardo', type: 'Custom' },
-    ];
+      document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+        scrollObserver.observe(el);
+      });
 
-    const portfolioGrid = document.getElementById('portfolio-grid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxType = document.getElementById('lightbox-type');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxLoc = document.getElementById('lightbox-location');
-    let currentLightboxIndex = 0;
+      // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
+      const projects = [
+        { img: 'assets/pool-infinity.avif', title: 'Villa Panoramica', location: 'Bergamo Alta', type: 'Infinity' },
+        { img: 'assets/pool-indoor.avif', title: 'Grotta del Relax', location: 'Sarnico', type: 'Indoor' },
+        { img: 'assets/pool-interrata.avif', title: 'L\'Essenziale', location: 'Sotto il Monte', type: 'Interrata' },
+        { img: 'assets/pool-hotel.avif', title: 'Lusso Alpino', location: 'Lago d\'Iseo', type: 'Hotel' },
+        { img: 'assets/pool-spa.avif', title: 'Centro Benessere', location: 'Trescore Balneario', type: 'Spa' },
+        { img: 'assets/pool-portfolio1.avif', title: 'Oasi Privata', location: 'Alzano Lombardo', type: 'Custom' },
+      ];
 
-    projects.forEach((p, i) => {
-      const button = document.createElement('button');
-      button.className = 'group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-scale-in scroll-elem cursor-pointer';
-      button.style.transitionDelay = `${i * 100}ms`;
-      button.innerHTML = `
+      const portfolioGrid = document.getElementById('portfolio-grid');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxType = document.getElementById('lightbox-type');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxLoc = document.getElementById('lightbox-location');
+      let currentLightboxIndex = 0;
+
+      projects.forEach((p, i) => {
+        const button = document.createElement('button');
+        button.className = 'group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-scale-in scroll-elem cursor-pointer';
+        button.style.transitionDelay = `${i * 100}ms`;
+        button.innerHTML = `
         <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-left">
@@ -824,75 +832,75 @@
           <p class="text-primary-foreground/70 text-sm">${p.location}</p>
         </div>
       `;
-      button.onclick = () => openLightbox(i);
-      portfolioGrid.appendChild(button);
-      // Ensure the dynamic button is observed by the scroll animation observer
-      scrollObserver.observe(button);
-    });
-
-    function openLightbox(index) {
-      currentLightboxIndex = index;
-      updateLightboxContent();
-      lightbox.classList.remove('hidden');
-      setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
-    }
-
-    function updateLightboxContent() {
-      const p = projects[currentLightboxIndex];
-      lightboxImg.src = p.img;
-      lightboxType.textContent = p.type;
-      lightboxTitle.textContent = p.title;
-      lightboxLoc.textContent = p.location;
-    }
-
-    function closeLightbox() {
-      lightbox.classList.add('opacity-0');
-      setTimeout(() => lightbox.classList.add('hidden'), 300);
-    }
-
-    document.getElementById('lightbox-close').onclick = closeLightbox;
-    lightbox.onclick = closeLightbox;
-    document.getElementById('lightbox-content').onclick = (e) => e.stopPropagation();
-
-    document.getElementById('lightbox-prev').onclick = (e) => {
-      e.stopPropagation();
-      currentLightboxIndex = (currentLightboxIndex - 1 + projects.length) % projects.length;
-      updateLightboxContent();
-    };
-    document.getElementById('lightbox-next').onclick = (e) => {
-      e.stopPropagation();
-      currentLightboxIndex = (currentLightboxIndex + 1) % projects.length;
-      updateLightboxContent();
-    };
-
-    // 5. COUNTERS STATISTICHE
-    const counters = document.querySelectorAll('.counter');
-    const statsObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = +entry.target.getAttribute('data-target');
-          let count = 0;
-          const updateCounter = () => {
-            const increment = target / 30; // Velocità animazione
-            if (count < target) {
-              count = Math.ceil(count + increment);
-              entry.target.innerText = count;
-              setTimeout(updateCounter, 40);
-            } else {
-              entry.target.innerText = target;
-            }
-          };
-          updateCounter();
-          observer.unobserve(entry.target);
-        }
+        button.onclick = () => openLightbox(i);
+        portfolioGrid.appendChild(button);
+        // Ensure the dynamic button is observed by the scroll animation observer
+        scrollObserver.observe(button);
       });
-    }, { threshold: 0.5 });
 
-    counters.forEach(c => statsObserver.observe(c));
+      function openLightbox(index) {
+        currentLightboxIndex = index;
+        updateLightboxContent();
+        lightbox.classList.remove('hidden');
+        setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+      }
 
-    // 6. FORM SUBMIT SIMULATION (RIMOSSO - LOGICA GESTITA DA SUPABASE)
-    // contactForm.addEventListener('submit', (e) => { ... });
+      function updateLightboxContent() {
+        const p = projects[currentLightboxIndex];
+        lightboxImg.src = p.img;
+        lightboxType.textContent = p.type;
+        lightboxTitle.textContent = p.title;
+        lightboxLoc.textContent = p.location;
+      }
 
+      function closeLightbox() {
+        lightbox.classList.add('opacity-0');
+        setTimeout(() => lightbox.classList.add('hidden'), 300);
+      }
+
+      const closeBtn = document.getElementById('lightbox-close');
+      if (closeBtn) closeBtn.onclick = closeLightbox;
+      lightbox.onclick = closeLightbox;
+      document.getElementById('lightbox-content').onclick = (e) => e.stopPropagation();
+
+      const prevBtn = document.getElementById('lightbox-prev');
+      if (prevBtn) prevBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentLightboxIndex = (currentLightboxIndex - 1 + projects.length) % projects.length;
+        updateLightboxContent();
+      };
+      const nextBtn = document.getElementById('lightbox-next');
+      if (nextBtn) nextBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentLightboxIndex = (currentLightboxIndex + 1) % projects.length;
+        updateLightboxContent();
+      };
+
+      // 5. COUNTERS STATISTICHE
+      const counters = document.querySelectorAll('.counter');
+      const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = +entry.target.getAttribute('data-target');
+            let count = 0;
+            const updateCounter = () => {
+              const increment = target / 30; // Velocità animazione
+              if (count < target) {
+                count = Math.ceil(count + increment);
+                entry.target.innerText = count;
+                setTimeout(updateCounter, 40);
+              } else {
+                entry.target.innerText = target;
+              }
+            };
+            updateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(c => statsObserver.observe(c));
+    });
   </script>
 </body>
 

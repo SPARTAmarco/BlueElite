@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow">
     <title>Login | Blu élite Admin</title>
 
-    <link rel="stylesheet" href="fonts.css">
+    <link rel="preload" href="fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="fonts.css"></noscript>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+    <script defer src="scripts\lucide.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+    <script defer src="scripts/supabase.js"></script>
     <link rel="stylesheet" href="dist/output.css">
 </head>
 
@@ -23,13 +27,27 @@
 
     <style>
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            50% { transform: translateX(8px); }
-            75% { transform: translateX(-8px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-8px);
+            }
+
+            50% {
+                transform: translateX(8px);
+            }
+
+            75% {
+                transform: translateX(-8px);
+            }
         }
+
         .animate-shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
         }
     </style>
 
@@ -45,7 +63,8 @@
             </div>
 
             <!-- Error Alert -->
-            <div id="error-alert" class="hidden mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl flex items-center gap-3 animate-shake">
+            <div id="error-alert"
+                class="hidden mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl flex items-center gap-3 animate-shake">
                 <i data-lucide="alert-circle" class="w-5 h-5 text-red-400"></i>
                 <p id="error-text" class="text-red-200 text-xs font-bold uppercase tracking-wider"></p>
             </div>
@@ -135,7 +154,7 @@
 
                 errorText.innerText = msg;
                 errorAlert.classList.remove('hidden');
-                
+
                 // Shake effect on form
                 loginForm.classList.add('animate-shake');
                 setTimeout(() => loginForm.classList.remove('animate-shake'), 500);
