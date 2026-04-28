@@ -28,7 +28,88 @@
   <script defer src="scripts/lucide.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
   <script defer src="scripts/supabase.js"></script>
-  <link rel="stylesheet" href="dist/output.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Carousel Specific Styles */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+      cursor: grab;
+    }
+
+    .carousel-track.continuous {
+      transition: none !important;
+    }
+
+    .carousel-track.manual-move {
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    }
+
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .carousel-item {
+      flex: 0 0 calc(100% - 2rem);
+      max-width: 400px;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .carousel-item {
+        flex: 0 0 calc(50% - 1.5rem);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .carousel-item {
+        flex: 0 0 calc(33.333% - 1.5rem);
+      }
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .carousel-btn {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 4px 12px rgba(11, 52, 101, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-navy);
+      transition: all 0.3s ease;
+      z-index: 20;
+    }
+
+    .carousel-btn:hover {
+      background: var(--color-pool);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 8px 24px rgba(49, 170, 227, 0.3);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -36,7 +117,7 @@
   <header id="navbar" class="fixed top-0 left-0 right-0 z-[110] transition-all duration-500 bg-transparent py-6">
     <nav class="w-full flex items-center justify-between px-6">
       <a href="#" class="flex items-center gap-4 group">
-        <img src="assets/logo-bluelite.png" alt="Blu élite Logo"
+        <img src="assets/output-white.png" alt="Blu élite Logo" id="logo-img"
           class="h-12 w-auto transition-transform duration-500 group-hover:scale-110">
         <span id="logo-text"
           class="font-serif text-3xl tracking-wide transition-colors duration-300 text-primary-foreground">Blu
@@ -121,7 +202,7 @@
   </div>
 
   <main>
-    <section id="hero" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section id="hero" class="relative h-[111.12vh] min-h-[778px] flex items-center overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style="background-image: url('assets/hero-pool.avif');">
       </div>
@@ -302,7 +383,7 @@
 
     <!-- PORTFOLIO (DA OPZIONE 2) -->
     <section id="portfolio" class="py-24 md:py-32 bg-background">
-      <div class="container mx-0 px-6" style="max-width: 100%;">
+      <div class="container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16 animate-fade-up scroll-elem">
           <p class="text-pool text-sm font-semibold tracking-[0.3em] uppercase mb-4">Portfolio</p>
           <h2 class="text-3xl md:text-5xl font-bold text-navy leading-tight mb-4">I nostri progetti realizzati</h2>
@@ -310,8 +391,18 @@
             territorio bergamasco.</p>
         </div>
 
-        <div class="carousel-container overflow-hidden py-10">
-          <div class="carousel-track flex" id="portfolio-track">
+        <div class="carousel-container animate-fade-up scroll-elem">
+          <div id="portfolio-carousel" class="carousel-track">
+            <!-- Dynamic items will be injected here -->
+          </div>
+          
+          <div class="carousel-nav">
+            <button id="carousel-prev" class="carousel-btn" aria-label="Precedente">
+              <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="carousel-next" class="carousel-btn" aria-label="Successivo">
+              <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -337,40 +428,6 @@
             class="w-12 h-12 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors text-primary-foreground font-bold">→</button>
         </div>
       </div>
-      <style>
-        .carousel-track {
-          display: flex;
-          gap: 1.5rem;
-          transition: transform 0.1s linear;
-          cursor: grab;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          width: max-content;
-        }
-
-        .carousel-track:active {
-          cursor: grabbing;
-        }
-
-        .carousel-item {
-          flex: 0 0 350px;
-          transition: transform 0.5s ease;
-        }
-
-        @media (max-width: 640px) {
-          .carousel-item {
-            flex: 0 0 280px;
-          }
-        }
-
-        .carousel-container {
-          position: relative;
-          mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-
-        /* Hover pause logic will be handled via JS for better control */
-      </style>
     </section>
 
     <!-- PROCESSO E NUMERI (DA OPZIONE 1) -->
@@ -430,20 +487,15 @@
       <div class="absolute inset-0 bg-navy/60 backdrop-blur-[2px]"></div>
 
       <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12" id="stats-container">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-12" id="stats-container">
           <div class="text-center animate-fade-up scroll-elem">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
                 data-target="24">0</span></p>
             <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Progetti Avviati</p>
           </div>
-          <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 100ms;">
-            <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="1">0</span></p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anno Fondazione</p>
-          </div>
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 200ms;">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="20">0</span></p>
+                data-target="10">0</span></p>
             <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anni Garanzia Scocca</p>
           </div>
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 300ms;">
@@ -661,17 +713,17 @@
     </section>
   </main>
 
-  <footer class="bg-navy py-20 relative overflow-hidden">
+  <footer class="bg-navy py-12 relative overflow-hidden">
     <!-- Subtle Gradient Ornament -->
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-pool/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
         <!-- Brand & Description -->
         <div class="space-y-6">
           <a href="#" class="group flex items-center gap-3">
-            <img src="assets/logo-bluelite.png" alt="Blu élite Logo" class="h-10 w-auto">
+            <img src="assets/output-white.png" alt="Blu élite Logo" class="h-10 w-auto">
             <span class="font-serif text-2xl tracking-wide text-primary-foreground">Blu élite</span>
           </a>
           <p class="text-primary-foreground/60 leading-relaxed text-sm max-w-xs">
@@ -695,7 +747,7 @@
         <!-- Quick Links -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Navigazione</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li><a href="#chi-siamo" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Il
                 Nostro Metodo</a></li>
             <li><a href="#servizi" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Servizi
@@ -712,7 +764,7 @@
         <!-- Contact Info -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Contatti</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <i data-lucide="map-pin" class="w-5 h-5 text-pool shrink-0"></i>
               <span class="text-primary-foreground/60 text-sm">Bergamo (BG), Italia</span>
@@ -734,14 +786,14 @@
 
       <!-- Bottom Bar -->
       <div
-        class="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p class="text-primary-foreground/40 text-[11px] tracking-wide uppercase">
-          © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX — Realizzato per l'eccellenza
+        class="border-t border-primary-foreground/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <p class="text-primary-foreground/50 text-xs tracking-wide uppercase">
+          © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX
         </p>
-        <div class="flex gap-8">
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3">
           <a href="privacy.html" target="_blank"
-            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
-            Privacy Policy e Cookie Policy
+            class="text-primary-foreground/80 text-xs font-semibold hover:text-pool transition-all uppercase tracking-widest border-b border-white/10 hover:border-pool pb-0.5">
+            Privacy & Cookie Policy
           </a>
         </div>
       </div>
@@ -751,95 +803,117 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Inizializza le icone lucide (usate in servizi, ecc)
-      lucide.createIcons();
+      try {
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Lucide icons error:', err);
+      }
 
-      // 1. GESTIONE NAVBAR SCROLL & ACTIVE LINKS
+      // 1. GESTIONE NAVBAR & MENU MOBILE
       const navbar = document.getElementById('navbar');
+      const logoImg = document.getElementById('logo-img');
       const logoText = document.getElementById('logo-text');
       const navLinks = document.querySelectorAll('.nav-link');
       const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
 
-      function updateHeaderTheme() {
-        const isScrolled = window.scrollY > 50;
-        const forceNavy = isScrolled || menuOpen;
-
-        if (forceNavy) {
-          navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          navbar.classList.remove('bg-transparent', 'py-6');
-          logoText.style.color = 'hsl(213, 80%, 22%)'; // Navy
-          navLinks.forEach(l => {
-            l.classList.remove('text-primary-foreground/90');
-            l.classList.add('text-navy');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-white');
-            b.classList.add('bg-navy');
-          });
-        } else {
-          navbar.classList.add('bg-transparent', 'py-6');
-          navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          logoText.style.color = 'white';
-          navLinks.forEach(l => {
-            l.classList.remove('text-navy');
-            l.classList.add('text-primary-foreground/90');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-navy');
-            b.classList.add('bg-white');
-          });
-        }
-      }
-
-      window.addEventListener('scroll', updateHeaderTheme);
-
-      // 2. GESTIONE MENU MOBILE
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileLinks = document.querySelectorAll('.mobile-link');
       let menuOpen = false;
 
+      function updateHeaderTheme() {
+        if (!navbar) return;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isScrolled = scrollTop > 50;
+        const forceNavy = isScrolled || menuOpen;
+
+        if (forceNavy) {
+          navbar.classList.add('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          navbar.classList.remove('bg-transparent', 'py-6');
+          if (logoImg) logoImg.src = 'assets/logo-blue.png';
+          if (logoText) logoText.style.color = '#08306A';
+          navLinks.forEach(l => {
+            l.style.color = '#08306A';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#08306A';
+            }
+          });
+        } else {
+          navbar.classList.add('bg-transparent', 'py-6');
+          navbar.classList.remove('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          if (logoImg) logoImg.src = 'assets/output-white.png';
+          if (logoText) logoText.style.color = '#ffffff';
+          navLinks.forEach(l => {
+            l.style.color = '#ffffff';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#ffffff';
+            }
+          });
+        }
+      }
+
+      try {
+        updateHeaderTheme();
+      } catch (err) {
+        console.error('Initial theme update error:', err);
+      }
+
+      window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+
       function toggleMenu() {
+        if (!mobileMenu) return;
         menuOpen = !menuOpen;
         updateHeaderTheme();
 
         if (menuOpen) {
           mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
           mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-          // Perfect X: Bar 1 moves down, Bar 3 moves up, Bar 2 vanishes
-          bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
-          bars[1].style.opacity = '0';
-          bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
+          if (bars[0]) bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
+          if (bars[1]) bars[1].style.opacity = '0';
+          if (bars[2]) bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
         } else {
           mobileMenu.classList.add('opacity-0', 'pointer-events-none');
           mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-          bars[0].style.transform = 'translateY(0) rotate(0)';
-          bars[1].style.opacity = '1';
-          bars[2].style.transform = 'translateY(0) rotate(0)';
+          if (bars[0]) bars[0].style.transform = 'translateY(0) rotate(0)';
+          if (bars[1]) bars[1].style.opacity = '1';
+          if (bars[2]) bars[2].style.transform = 'translateY(0) rotate(0)';
         }
       }
-      mobileMenuBtn.addEventListener('click', toggleMenu);
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
       mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
       // 3. ANIMAZIONI DI SCROLL (Intersection Observer)
-      document.querySelectorAll('.animate-scroll').forEach(el => {
-        el.classList.add('animate-fade-up');
-      });
+      let scrollObserver;
+      try {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        scrollObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
 
-      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-      const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+        document.querySelectorAll('.animate-scroll').forEach(el => {
+          el.classList.add('animate-fade-up');
         });
-      }, observerOptions);
 
-      document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
-        scrollObserver.observe(el);
-      });
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          scrollObserver.observe(el);
+        });
+      } catch (err) {
+        console.error('Observer error:', err);
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          el.classList.add('visible');
+        });
+      }
 
-      // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
+      // 4. GENERAZIONE PORTFOLIO CAROUSEL E LIGHTBOX
       const projects = [
         { img: 'assets/pool-infinity.avif', title: 'Villa Panoramica', location: 'Bergamo Alta', type: 'Infinity' },
         { img: 'assets/pool-indoor.avif', title: 'Grotta del Relax', location: 'Sarnico', type: 'Indoor' },
@@ -849,120 +923,149 @@
         { img: 'assets/pool-portfolio1.avif', title: 'Oasi Privata', location: 'Alzano Lombardo', type: 'Custom' },
       ];
 
-      const track = document.getElementById('portfolio-track');
+      const carouselTrack = document.getElementById('portfolio-carousel');
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxType = document.getElementById('lightbox-type');
       const lightboxTitle = document.getElementById('lightbox-title');
       const lightboxLoc = document.getElementById('lightbox-location');
-      let currentLightboxIndex = 0;
-
-      // Duplicate projects for infinite effect
-      const extendedProjects = [...projects, ...projects, ...projects];
-
-      extendedProjects.forEach((p, i) => {
-        const item = document.createElement('div');
-        item.className = 'carousel-item group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 cursor-pointer';
-        item.innerHTML = `
-        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-left">
-          <p class="text-pool text-xs font-semibold tracking-widest uppercase">${p.type}</p>
-          <h3 class="text-primary-foreground text-xl font-bold">${p.title}</h3>
-          <p class="text-primary-foreground/70 text-sm">${p.location}</p>
-        </div>
-      `;
-        item.onclick = () => openLightbox(i % projects.length);
-        track.appendChild(item);
-      });
-
-      // Carousel logic: Auto-scroll + Drag
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      let animationId;
-      let currentScroll = 0;
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
+      
+      let currentX = 0;
       let isPaused = false;
-      const speed = 0.5; // pixels per frame
+      let tickerId = null;
+      let speed = 1.2; // Pixels per frame
+      let itemFullWidth = 0;
+      let totalWidth = 0;
 
-      function animate() {
-        if (!isDown && !isPaused) {
-          currentScroll += speed;
-          // Check if we reached the end of one set of items to loop
-          const itemWidth = track.firstElementChild.offsetWidth + 24; // item + gap
-          const totalWidth = itemWidth * projects.length;
+      function createCarouselItems() {
+        carouselTrack.innerHTML = '';
+        // Triple items for infinite ticker feel
+        const allItems = [...projects, ...projects, ...projects];
+        
+        allItems.forEach((p, i) => {
+          const div = document.createElement('div');
+          div.className = 'carousel-item group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 cursor-pointer';
+          div.innerHTML = `
+            <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-left">
+              <p class="text-pool text-xs font-semibold tracking-widest uppercase">${p.type}</p>
+              <h3 class="text-primary-foreground text-xl font-bold">${p.title}</h3>
+              <p class="text-primary-foreground/70 text-sm">${p.location}</p>
+            </div>
+          `;
+          
+          div.onclick = () => openLightbox(i % projects.length);
+          carouselTrack.appendChild(div);
+        });
 
-          if (currentScroll >= totalWidth) {
-            currentScroll = 0;
-          }
-          track.style.transform = `translateX(-${currentScroll}px)`;
-        }
-        animationId = requestAnimationFrame(animate);
+        calculateDimensions();
+        // Start from the second set of items (index projects.length)
+        currentX = -projects.length * itemFullWidth;
+        carouselTrack.style.transform = `translateX(${currentX}px)`;
+        startTicker();
       }
 
-      // Start animation
-      animate();
+      function calculateDimensions() {
+        const item = carouselTrack.querySelector('.carousel-item');
+        if (!item) return;
+        const gap = parseInt(getComputedStyle(carouselTrack).gap) || 0;
+        itemFullWidth = item.offsetWidth + gap;
+        totalWidth = projects.length * itemFullWidth;
+      }
 
-      // Pause on hover
-      track.addEventListener('mouseenter', () => isPaused = true);
-      track.addEventListener('mouseleave', () => isPaused = false);
+      function startTicker() {
+        if (tickerId) cancelAnimationFrame(tickerId);
+        
+        function tick() {
+          if (!isPaused) {
+            currentX -= speed;
+            
+            // Seamless wrap: keep currentX between -totalWidth and -totalWidth * 2
+            if (currentX <= -totalWidth * 2) {
+              currentX += totalWidth;
+            } else if (currentX >= -totalWidth && speed < 0) {
+               // Only needed if speed is negative (moving right)
+               currentX -= totalWidth;
+            }
 
-      // Drag functionality
-      track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        track.classList.add('active');
-        startX = e.pageX - track.offsetLeft;
-        scrollLeft = currentScroll;
+            carouselTrack.style.transform = `translateX(${currentX}px)`;
+          }
+          tickerId = requestAnimationFrame(tick);
+        }
+        tickerId = requestAnimationFrame(tick);
+      }
+
+      function moveToRelative(direction) {
+        if (isPaused && !tickerId) return; // safety
+        
+        // Stop ticker if it was doing something else
+        isPaused = true;
+        carouselTrack.classList.add('manual-move');
+        
+        calculateDimensions();
+        
+        // Target is the nearest item index + direction
+        const currentIndexFloat = Math.abs(currentX) / itemFullWidth;
+        const targetIndex = Math.round(currentIndexFloat) + direction;
+        
+        currentX = -(targetIndex * itemFullWidth);
+        carouselTrack.style.transform = `translateX(${currentX}px)`;
+        
+        clearTimeout(window.moveTimeout);
+        window.moveTimeout = setTimeout(() => {
+          carouselTrack.classList.remove('manual-move');
+          
+          // Re-normalize currentX to be within the second (middle) set
+          // currentX should be in [-totalWidth, -totalWidth * 2]
+          while (currentX > -totalWidth) {
+            currentX -= totalWidth;
+          }
+          while (currentX <= -totalWidth * 2) {
+            currentX += totalWidth;
+          }
+          
+          carouselTrack.style.transform = `translateX(${currentX}px)`;
+          isPaused = false;
+        }, 800);
+      }
+
+      nextBtn.onclick = (e) => {
+        e.stopPropagation();
+        moveToRelative(1);
+      };
+
+      prevBtn.onclick = (e) => {
+        e.stopPropagation();
+        moveToRelative(-1);
+      };
+
+      carouselTrack.onmouseenter = () => isPaused = true;
+      carouselTrack.onmouseleave = () => {
+        if (!lightbox.classList.contains('hidden')) return;
+        isPaused = false;
+      };
+
+      window.addEventListener('resize', () => {
+        calculateDimensions();
+        // Adjust currentX relative to new dimensions if necessary
+        // Simplest is to snap to nearest item in middle range
+        const index = Math.round(Math.abs(currentX) / itemFullWidth) % projects.length;
+        currentX = -(totalWidth + (index * itemFullWidth));
+        carouselTrack.style.transform = `translateX(${currentX}px)`;
       });
 
-      track.addEventListener('mouseleave', () => {
-        isDown = false;
-      });
-
-      track.addEventListener('mouseup', () => {
-        isDown = false;
-      });
-
-      track.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        const walk = (x - startX) * 2; // scroll-fast
-        currentScroll = scrollLeft - walk;
-
-        // Keep it within loop boundaries for smooth feel
-        const itemWidth = track.firstElementChild.offsetWidth + 24;
-        const totalWidth = itemWidth * projects.length;
-        if (currentScroll < 0) currentScroll += totalWidth;
-        if (currentScroll >= totalWidth) currentScroll -= totalWidth;
-
-        track.style.transform = `translateX(-${currentScroll}px)`;
-      });
-
-      // Touch events
-      track.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - track.offsetLeft;
-        scrollLeft = currentScroll;
-      });
-
-      track.addEventListener('touchend', () => {
-        isDown = false;
-      });
-
-      track.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - track.offsetLeft;
-        const walk = (x - startX) * 2;
-        currentScroll = scrollLeft - walk;
-        track.style.transform = `translateX(-${currentScroll}px)`;
-      });
+      // Lightbox
+      let currentLightboxIndex = 0;
 
       function openLightbox(index) {
         currentLightboxIndex = index;
         updateLightboxContent();
         lightbox.classList.remove('hidden');
         setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        isPaused = true;
       }
 
       function updateLightboxContent() {
@@ -975,26 +1078,29 @@
 
       function closeLightbox() {
         lightbox.classList.add('opacity-0');
-        setTimeout(() => lightbox.classList.add('hidden'), 300);
+        setTimeout(() => {
+          lightbox.classList.add('hidden');
+          isPaused = false;
+        }, 300);
       }
 
-      const closeBtn = document.getElementById('lightbox-close');
-      if (closeBtn) closeBtn.onclick = closeLightbox;
+      document.getElementById('lightbox-close').onclick = closeLightbox;
       lightbox.onclick = closeLightbox;
       document.getElementById('lightbox-content').onclick = (e) => e.stopPropagation();
 
-      const prevBtn = document.getElementById('lightbox-prev');
-      if (prevBtn) prevBtn.onclick = (e) => {
+      document.getElementById('lightbox-prev').onclick = (e) => {
         e.stopPropagation();
         currentLightboxIndex = (currentLightboxIndex - 1 + projects.length) % projects.length;
         updateLightboxContent();
       };
-      const nextBtn = document.getElementById('lightbox-next');
-      if (nextBtn) nextBtn.onclick = (e) => {
+      
+      document.getElementById('lightbox-next').onclick = (e) => {
         e.stopPropagation();
         currentLightboxIndex = (currentLightboxIndex + 1) % projects.length;
         updateLightboxContent();
       };
+
+      createCarouselItems();
 
       // 5. COUNTERS STATISTICHE
       const counters = document.querySelectorAll('.counter');

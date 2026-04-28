@@ -7,7 +7,9 @@
   <title>Blu élite Piscine di Lusso</title>
 
   <link rel="preload" href="fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="fonts.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="fonts.css">
+  </noscript>
 
   <!-- SEO Meta Tags -->
   <meta name="description"
@@ -26,7 +28,7 @@
   <script defer src="scripts/lucide.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
   <script defer src="scripts/supabase.js"></script>
-  <link rel="stylesheet" href="dist/output.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -34,7 +36,7 @@
   <header id="navbar" class="fixed top-0 left-0 right-0 z-[110] transition-all duration-500 bg-transparent py-6">
     <nav class="w-full flex items-center justify-between px-6">
       <a href="#" class="flex items-center gap-4 group">
-        <img src="assets/logo-bluelite.png" alt="Blu élite Logo"
+        <img src="assets/output-white.png" alt="Blu élite Logo" id="logo-img"
           class="h-12 w-auto transition-transform duration-500 group-hover:scale-110">
         <span id="logo-text"
           class="font-serif text-3xl tracking-wide transition-colors duration-300 text-primary-foreground">Blu
@@ -119,7 +121,7 @@
   </div>
 
   <main>
-    <section id="hero" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section id="hero" class="relative h-[111.12vh] min-h-[778px] flex items-center overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style="background-image: url('assets/hero-pool.avif');">
       </div>
@@ -392,26 +394,21 @@
       <div class="absolute inset-0 bg-navy/60 backdrop-blur-[2px]"></div>
 
       <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12" id="stats-container">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12" id="stats-container">
           <div class="text-center animate-fade-up scroll-elem">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
                 data-target="24">0</span></p>
             <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Progetti Avviati</p>
           </div>
-          <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 100ms;">
-            <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="1">0</span></p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anno Fondazione</p>
-          </div>
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 200ms;">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="20">0</span></p>
+                data-target="10">0</span></p>
             <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anni Garanzia Scocca</p>
           </div>
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 300ms;">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
                 data-target="100">0</span>%</p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Materiali italiani</p>
+            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Materiali di Qualità</p>
           </div>
         </div>
       </div>
@@ -537,10 +534,7 @@
                   telefono: document.getElementById('telefono').value,
                   tipo: document.getElementById('tipo').value,
                   budget: document.getElementById('budget').value,
-                  messaggio: document.getElementById('messaggio').value,
-                  privacy_accepted: document.getElementById('privacy').checked,
-                  privacy_policy_version: 'v1.0 (Marzo 2026)',
-                  privacy_timestamp: new Date().toISOString()
+                  messaggio: document.getElementById('messaggio').value
                 };
 
                 // De-activate button during sending
@@ -623,17 +617,17 @@
     </section>
   </main>
 
-  <footer class="bg-navy py-20 relative overflow-hidden">
+  <footer class="bg-navy py-12 relative overflow-hidden">
     <!-- Subtle Gradient Ornament -->
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-pool/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
         <!-- Brand & Description -->
         <div class="space-y-6">
           <a href="#" class="group flex items-center gap-3">
-            <img src="assets/logo-bluelite.png" alt="Blu élite Logo" class="h-10 w-auto">
+            <img src="assets/output-white.png" alt="Blu élite Logo" class="h-10 w-auto">
             <span class="font-serif text-2xl tracking-wide text-primary-foreground">Blu élite</span>
           </a>
           <p class="text-primary-foreground/60 leading-relaxed text-sm max-w-xs">
@@ -657,7 +651,7 @@
         <!-- Quick Links -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Navigazione</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li><a href="#chi-siamo" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Il
                 Nostro Metodo</a></li>
             <li><a href="#servizi" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Servizi
@@ -674,7 +668,7 @@
         <!-- Contact Info -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Contatti</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <i data-lucide="map-pin" class="w-5 h-5 text-pool shrink-0"></i>
               <span class="text-primary-foreground/60 text-sm">Bergamo (BG), Italia</span>
@@ -696,14 +690,14 @@
 
       <!-- Bottom Bar -->
       <div
-        class="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p class="text-primary-foreground/40 text-[11px] tracking-wide uppercase">
-          © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX — Realizzato per l'eccellenza
+        class="border-t border-primary-foreground/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <p class="text-primary-foreground/50 text-xs tracking-wide uppercase">
+          © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX
         </p>
-        <div class="flex gap-8">
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3">
           <a href="privacy.html" target="_blank"
-            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
-            Privacy Policy e Cookie Policy
+            class="text-primary-foreground/80 text-xs font-semibold hover:text-pool transition-all uppercase tracking-widest border-b border-white/10 hover:border-pool pb-0.5">
+            Privacy & Cookie Policy
           </a>
         </div>
       </div>
@@ -713,93 +707,115 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Inizializza le icone lucide (usate in servizi, ecc)
-      lucide.createIcons();
+      try {
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Lucide icons error:', err);
+      }
 
-      // 1. GESTIONE NAVBAR SCROLL & ACTIVE LINKS
+      // 1. GESTIONE NAVBAR & MENU MOBILE
       const navbar = document.getElementById('navbar');
+      const logoImg = document.getElementById('logo-img');
       const logoText = document.getElementById('logo-text');
       const navLinks = document.querySelectorAll('.nav-link');
       const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
 
-      function updateHeaderTheme() {
-        const isScrolled = window.scrollY > 50;
-        const forceNavy = isScrolled || menuOpen;
-
-        if (forceNavy) {
-          navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          navbar.classList.remove('bg-transparent', 'py-6');
-          logoText.style.color = 'hsl(213, 80%, 22%)'; // Navy
-          navLinks.forEach(l => {
-            l.classList.remove('text-primary-foreground/90');
-            l.classList.add('text-navy');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-white');
-            b.classList.add('bg-navy');
-          });
-        } else {
-          navbar.classList.add('bg-transparent', 'py-6');
-          navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          logoText.style.color = 'white';
-          navLinks.forEach(l => {
-            l.classList.remove('text-navy');
-            l.classList.add('text-primary-foreground/90');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-navy');
-            b.classList.add('bg-white');
-          });
-        }
-      }
-
-      window.addEventListener('scroll', updateHeaderTheme);
-
-      // 2. GESTIONE MENU MOBILE
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileLinks = document.querySelectorAll('.mobile-link');
       let menuOpen = false;
 
+      function updateHeaderTheme() {
+        if (!navbar) return;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isScrolled = scrollTop > 50;
+        const forceNavy = isScrolled || menuOpen;
+
+        if (forceNavy) {
+          navbar.classList.add('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          navbar.classList.remove('bg-transparent', 'py-6');
+          if (logoImg) logoImg.src = 'assets/logo-blue.png';
+          if (logoText) logoText.style.color = '#08306A';
+          navLinks.forEach(l => {
+            l.style.color = '#08306A';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#08306A';
+            }
+          });
+        } else {
+          navbar.classList.add('bg-transparent', 'py-6');
+          navbar.classList.remove('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          if (logoImg) logoImg.src = 'assets/output-white.png';
+          if (logoText) logoText.style.color = '#ffffff';
+          navLinks.forEach(l => {
+            l.style.color = '#ffffff';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#ffffff';
+            }
+          });
+        }
+      }
+
+      try {
+        updateHeaderTheme();
+      } catch (err) {
+        console.error('Initial theme update error:', err);
+      }
+
+      window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+
       function toggleMenu() {
+        if (!mobileMenu) return;
         menuOpen = !menuOpen;
         updateHeaderTheme();
 
         if (menuOpen) {
           mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
           mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-          // Perfect X: Bar 1 moves down, Bar 3 moves up, Bar 2 vanishes
-          bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
-          bars[1].style.opacity = '0';
-          bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
+          if (bars[0]) bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
+          if (bars[1]) bars[1].style.opacity = '0';
+          if (bars[2]) bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
         } else {
           mobileMenu.classList.add('opacity-0', 'pointer-events-none');
           mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-          bars[0].style.transform = 'translateY(0) rotate(0)';
-          bars[1].style.opacity = '1';
-          bars[2].style.transform = 'translateY(0) rotate(0)';
+          if (bars[0]) bars[0].style.transform = 'translateY(0) rotate(0)';
+          if (bars[1]) bars[1].style.opacity = '1';
+          if (bars[2]) bars[2].style.transform = 'translateY(0) rotate(0)';
         }
       }
-      mobileMenuBtn.addEventListener('click', toggleMenu);
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
       mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
       // 3. ANIMAZIONI DI SCROLL (Intersection Observer)
-      document.querySelectorAll('.animate-scroll').forEach(el => {
-        el.classList.add('animate-fade-up');
-      });
+      let scrollObserver;
+      try {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        scrollObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
 
-      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-      const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+        document.querySelectorAll('.animate-scroll').forEach(el => {
+          el.classList.add('animate-fade-up');
         });
-      }, observerOptions);
 
-      document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
-        scrollObserver.observe(el);
-      });
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          scrollObserver.observe(el);
+        });
+      } catch (err) {
+        console.error('Observer error:', err);
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          el.classList.add('visible');
+        });
+      }
 
       // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
       const projects = [

@@ -92,10 +92,17 @@
 
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body { 
+  zoom: 100%;
   font-family: var(--font-sans); 
   background-color: var(--color-background);
   color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+#hero{
+  zoom: 90%
+}
+* {
+  box-sizing: border-box;
 }

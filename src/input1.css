@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", "sans-serif";
+  --font-serif: "Playfair Display", "serif";
+
+  --color-navy: hsl(213 80% 22%);
+  --color-pool: hsl(199 76% 54%);
+  --color-pool-light: hsl(199 100% 95%);
+  --color-pool-glow: hsl(199 76% 64%);
+  --color-gold: hsl(40 70% 55%);
+  --color-border: hsl(199 30% 88%);
+  
+  --background-image-gradient-hero: linear-gradient(135deg, hsl(213 80% 12% / 0.85), hsl(199 76% 24% / 0.7));
+  --background-image-gradient-pool: linear-gradient(135deg, hsl(199 76% 54%), hsl(199 76% 44%));
+  --background-image-gradient-navy: linear-gradient(135deg, hsl(213 80% 15%), hsl(213 80% 25%));
+
+  --shadow-card: 0 8px 32px -8px hsl(213 80% 22% / 0.1);
+  --shadow-card-hover: 0 16px 48px -12px hsl(199 76% 54% / 0.2);
+  --shadow-hero: 0 20px 60px -15px hsl(213 80% 22% / 0.3);
+
+  @keyframes water-shimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  --animate-water-shimmer: water-shimmer 3s ease-in-out infinite;
+}
+
