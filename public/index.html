@@ -2,21 +2,39 @@
 <html lang="it">
 
 <head>
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Blu Elite Piscine" />
+  <link rel="manifest" href="/favicons/site.webmanifest" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-255623620"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-255623620');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blu élite Piscine di Lusso</title>
+  <title>Blu Elite Piscine</title>
 
   <link rel="preload" href="fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="fonts.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="fonts.css">
+  </noscript>
 
   <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Blu élite - Progettazione e costruzione di piscine di lusso su misura a Bergamo. Eccellenza artigianale e design esclusivo per la tua oasi di benessere." />
+    content="Blu Elite Piscine - Progettazione e costruzione di piscine di lusso su misura. Eccellenza e design esclusivo per la tua oasi di benessere." />
   <meta name="keywords"
-    content="piscine lusso bergamo, costruzione piscine, design piscine, piscine interrate lusso, blu elite piscine" />
-  <meta property="og:title" content="Blu élite Piscine di Lusso" />
+    content="piscine lusso, costruzione piscine, design piscine, piscine interrate lusso, Blu Elite Piscine piscine" />
+  <meta property="og:title" content="Blu Elite Piscine" />
   <meta property="og:description" content="Progettiamo e costruiamo la piscina dei tuoi sogni a Bergamo e provincia." />
-  <meta property="og:image" content="assets/hero-pool.avif" />
+  <meta property="og:image" content="assets/hero-foto.avif" />
   <meta property="og:type" content="website" />
   <link rel="manifest" href="manifest.json" />
 
@@ -26,7 +44,7 @@
   <script defer src="scripts/lucide.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
   <script defer src="scripts/supabase.js"></script>
-  <link rel="stylesheet" href="dist/output.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -34,11 +52,11 @@
   <header id="navbar" class="fixed top-0 left-0 right-0 z-[110] transition-all duration-500 bg-transparent py-6">
     <nav class="w-full flex items-center justify-between px-6">
       <a href="#" class="flex items-center gap-4 group">
-        <img src="assets/logo-bluelite.png" alt="Blu élite Logo"
+        <img src="assets/output-white.png" alt="Blu Elite Piscine Logo" id="logo-img"
           class="h-12 w-auto transition-transform duration-500 group-hover:scale-110">
         <span id="logo-text"
           class="font-serif text-3xl tracking-wide transition-colors duration-300 text-primary-foreground">Blu
-          élite</span>
+          Elite Piscine</span>
       </a>
 
       <ul class="hidden lg:flex items-center gap-8" id="desktop-nav">
@@ -48,9 +66,9 @@
         <li><a href="#servizi"
             class="nav-link text-sm font-medium tracking-wide transition-colors duration-300 text-primary-foreground/90 hover:text-primary">Servizi</a>
         </li>
-        <li><a href="#portfolio"
+        <!-- <li><a href="#portfolio"
             class="nav-link text-sm font-medium tracking-wide transition-colors duration-300 text-primary-foreground/90 hover:text-primary">Portfolio</a>
-        </li>
+        </li> -->
         <li><a href="#processo"
             class="nav-link text-sm font-medium tracking-wide transition-colors duration-300 text-primary-foreground/90 hover:text-primary">Processo</a>
         </li>
@@ -107,21 +125,14 @@
         RICHIEDI PREVENTIVO
       </a>
 
-      <div class="flex gap-6">
-        <a href="#" class="text-slate-400 hover:text-pool transition-colors">
-          <i data-lucide="facebook" class="w-7 h-7"></i>
-        </a>
-        <a href="#" class="text-slate-400 hover:text-pool transition-colors">
-          <i data-lucide="instagram" class="w-7 h-7"></i>
-        </a>
-      </div>
+
     </div>
   </div>
 
   <main>
-    <section id="hero" class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section id="hero" class="relative h-[111.12vh] min-h-[778px] flex items-center overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('assets/hero-pool.avif');">
+        style="background-image: url('assets/hero-foto.avif');">
       </div>
       <div class="absolute inset-0 bg-gradient-hero"></div>
       <div
@@ -132,15 +143,14 @@
         <div class="max-w-3xl">
           <h1
             class="text-4xl md:text-6xl lg:text-7xl font-black text-primary-foreground leading-[1.05] mb-6 animate-scroll delay-100">
-            Blu élite
-            <br />
-            Piscine di
+            Blu Elite Piscine
             <br />
             <span class="text-gradient-pool">lusso su misura</span>
           </h1>
           <p class="text-lg md:text-xl text-primary-foreground/80 font-light max-w-xl mb-10 animate-scroll delay-200">
-            Progettiamo e costruiamo piscine esclusive per residenze private, hotel e resort. Qualità artigianale,
-            design contemporaneo.
+            Infinite combinazioni per trasformare il vostro sogno
+            in realtà.
+            Qualità, professionalità fuse in un unica realtà.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4 animate-scroll delay-300">
@@ -148,10 +158,10 @@
               class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-pool text-primary-foreground text-base font-bold tracking-wide hover:bg-pool-glow transition-all duration-300 hover:shadow-card-hover hover:scale-105">
               Richiedi Preventivo
             </a>
-            <a href="#portfolio"
+            <!-- <a href="#portfolio"
               class="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-primary-foreground/30 text-primary-foreground text-base font-medium tracking-wide hover:border-primary-foreground/60 hover:bg-primary-foreground/10 transition-all duration-300">
               I Nostri Progetti
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -165,17 +175,24 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="animate-fade-up scroll-elem">
             <span class="text-pool font-bold tracking-[0.3em] uppercase text-sm mb-4 block">La Nostra Storia</span>
-            <h2 class="text-3xl md:text-5xl font-bold text-navy mb-6 leading-tight">Innovazione e passione nata nel
-              2026.</h2>
+            <h2 class="text-3xl md:text-5xl font-bold text-navy mb-6 leading-tight">Innovazione e passione.</h2>
             <p class="text-muted-foreground text-lg mb-6 leading-relaxed">
-              Blu élite nasce quest'anno con un obiettivo chiaro: ridefinire il concetto di piscina di lusso in
-              provincia di
-              Bergamo. Uniamo l'esperienza tecnica dei nostri artigiani alle tecnologie di filtrazione più avanzate sul
-              mercato.
+              Le nostre piscine nascono dall'incontro tra design contemporaneo,
+              tecnologia avanzata e cura artigianale dei dettagli.
+              Ogni progetto è pensato per valorizzare lo spazio esterno e trasformarlo
+              in un luogo esclusivo di relax e benessere.
             </p>
-            <p class="text-muted-foreground text-lg mb-8 leading-relaxed">
-              Non costruiamo solo vasche, ma creiamo ambienti che valorizzano l'architettura della tua casa e migliorano
-              la qualità del tuo tempo libero.
+            <p class="text-muted-foreground text-lg mb-6 leading-relaxed">
+              Realizziamo piscine su misura, studiate per integrarsi armoniosamente con
+              l'ambiente circostante e rispondere alle esigenze estetiche e funzionali di ogni cliente.
+              Linee pulite, materiali selezionati e soluzioni innovative garantiscono
+              un risultato elegante, duraturo e di grande impatto visivo.
+            </p>
+            <p class="text-muted-foreground text-lg mb-6 leading-relaxed">
+              Dalla progettazione alla realizzazione, accompagniamo il cliente in ogni fase del percorso,
+              offrendo consulenza personalizzata, attenzione ai dettagli e massima professionalità.
+              Il nostro obiettivo è creare piscine che non siano solo un elemento architettonico,
+              ma una vera e propria esperienza da vivere ogni giorno.
             </p>
             <div class="grid grid-cols-2 gap-6">
               <div class="border-l-4 border-pool pl-4">
@@ -191,7 +208,7 @@
           <div class="relative animate-fade-up scroll-elem" style="transition-delay: 200ms;">
             <div
               class="aspect-square rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500">
-              <img alt="Cantiere piscina" class="w-full h-full object-cover" src="assets/pool-interrata.avif" />
+              <img alt="Cantiere piscina" class="w-full h-full object-cover" src="assets/chi-siamo.avif" />
             </div>
           </div>
         </div>
@@ -205,8 +222,8 @@
           <p class="text-pool text-sm font-semibold tracking-[0.3em] uppercase mb-4">I Nostri Servizi</p>
           <h2 class="text-3xl md:text-5xl font-bold text-navy leading-tight mb-4">Ogni progetto, una soluzione unica
           </h2>
-          <p class="text-muted-foreground text-lg">Dalla progettazione alla realizzazione, offriamo un servizio completo
-            per creare la piscina dei vostri sogni.</p>
+          <p class="text-muted-foreground text-lg">Vi accompagneremo passo dopo passo dalla progettazione alla
+            realizzazione e oltre.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -215,6 +232,36 @@
             style="transition-delay: 0ms;">
             <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="waves"
                 class="w-7 h-7 text-pool"></i></div>
+            <h3 class="text-xl font-bold text-navy mb-3">Piscine a Sfioro</h3>
+            <p class="text-muted-foreground leading-relaxed">L'acqua si fonde con l'orizzonte: un'estetica senza bordi
+              visibili per un effetto infinity di grande impatto.</p>
+          </div>
+
+          <div
+            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
+            style="transition-delay: 100ms;">
+            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="filter"
+                class="w-7 h-7 text-pool"></i></div>
+            <h3 class="text-xl font-bold text-navy mb-3">Piscine a Skimmer</h3>
+            <p class="text-muted-foreground leading-relaxed">Il sistema di filtraggio classico e affidabile, ideale per
+              piscine private di ogni dimensione.</p>
+          </div>
+
+          <div
+            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
+            style="transition-delay: 200ms;">
+            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="layers"
+                class="w-7 h-7 text-pool"></i></div>
+            <h3 class="text-xl font-bold text-navy mb-3">Piscine Sottobordo</h3>
+            <p class="text-muted-foreground leading-relaxed">Design raffinato con bordo integrato nella pavimentazione,
+              per un risultato architettonico pulito e lineare.</p>
+          </div>
+
+          <div
+            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
+            style="transition-delay: 300ms;">
+            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="shovel"
+                class="w-7 h-7 text-pool"></i></div>
             <h3 class="text-xl font-bold text-navy mb-3">Piscine Interrate</h3>
             <p class="text-muted-foreground leading-relaxed">Soluzioni classiche ed eleganti, perfettamente integrate
               nel verde del vostro giardino.</p>
@@ -222,59 +269,40 @@
 
           <div
             class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
-            style="transition-delay: 100ms;">
-            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="droplets"
-                class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Piscine Infinity</h3>
-            <p class="text-muted-foreground leading-relaxed">Il bordo a sfioro che fonde la vostra piscina con il
-              paesaggio circostante.</p>
-          </div>
-
-          <div
-            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
-            style="transition-delay: 200ms;">
-            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="home"
-                class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Piscine Indoor</h3>
-            <p class="text-muted-foreground leading-relaxed">Spazi acquatici interni per un benessere senza stagioni,
-              tutto l'anno.</p>
-          </div>
-
-          <div
-            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
-            style="transition-delay: 300ms;">
-            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i
-                data-lucide="building-2" class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Piscine per Hotel</h3>
-            <p class="text-muted-foreground leading-relaxed">Progettazione e costruzione per strutture ricettive e
-              resort di alto livello.</p>
-          </div>
-
-          <div
-            class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
             style="transition-delay: 400ms;">
-            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="droplets"
+            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="box"
                 class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Spa & Wellness</h3>
-            <p class="text-muted-foreground leading-relaxed">Vasche idromassaggio, aree relax e sistemi spa integrati
-              nel vostro progetto.</p>
+            <h3 class="text-xl font-bold text-navy mb-3">Piscine Fuoriterra</h3>
+            <p class="text-muted-foreground leading-relaxed">Installazione rapida e versatile, senza opere murarie: la
+              soluzione ideale per ogni contesto.</p>
           </div>
 
           <div
             class="group relative rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-fade-up scroll-elem p-8"
             style="transition-delay: 500ms;">
-            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="wrench"
+            <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="sparkles"
                 class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Manutenzione</h3>
-            <p class="text-muted-foreground leading-relaxed">Servizio completo di manutenzione ordinaria e straordinaria
-              per ogni tipo di piscina.</p>
+            <h3 class="text-xl font-bold text-navy mb-3">Yacuzi & Spa</h3>
+            <p class="text-muted-foreground leading-relaxed">Vasche idromassaggio e sistemi spa di lusso per un
+              benessere esclusivo, tutto l'anno.</p>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <div class="grid md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
           <div
             class="group flex items-center gap-6 p-8 rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1 animate-fade-up scroll-elem"
             style="transition-delay: 600ms;">
+            <div class="w-16 h-16 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
+                data-lucide="wrench" class="w-8 h-8 text-pool"></i></div>
+            <div>
+              <h3 class="text-xl font-bold text-navy mb-2">Manutenzione</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed">Servizio completo di manutenzione ordinaria e
+                straordinaria per ogni tipo di piscina.</p>
+            </div>
+          </div>
+          <div
+            class="group flex items-center gap-6 p-8 rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1 animate-fade-up scroll-elem"
+            style="transition-delay: 700ms;">
             <div class="w-16 h-16 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
                 data-lucide="refresh-ccw" class="w-8 h-8 text-pool"></i></div>
             <div>
@@ -283,28 +311,18 @@
                 tecnologie e design all'avanguardia.</p>
             </div>
           </div>
-          <div
-            class="group flex items-center gap-6 p-8 rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1 animate-fade-up scroll-elem"
-            style="transition-delay: 700ms;">
-            <div class="w-16 h-16 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
-                data-lucide="waves" class="w-8 h-8 text-pool"></i></div>
-            <div>
-              <h3 class="text-xl font-bold text-navy mb-2">Progettazione</h3>
-              <p class="text-muted-foreground text-sm leading-relaxed">Consulenza tecnica e progettazione 3D per
-                visualizzare il risultato finale prima della costruzione.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- PORTFOLIO (DA OPZIONE 2) -->
-    <section id="portfolio" class="py-24 md:py-32 bg-background">
+    <!-- <section id="portfolio" class="py-24 md:py-32 bg-background">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16 animate-fade-up scroll-elem">
           <p class="text-pool text-sm font-semibold tracking-[0.3em] uppercase mb-4">Portfolio</p>
           <h2 class="text-3xl md:text-5xl font-bold text-navy leading-tight mb-4">I nostri progetti realizzati</h2>
-          <p class="text-muted-foreground text-lg">Una selezione delle piscine progettate e costruite da Blu élite sul
+          <p class="text-muted-foreground text-lg">Una selezione delle piscine progettate e costruite da Blu Elite
+            Piscine sul
             territorio bergamasco.</p>
         </div>
 
@@ -333,10 +351,10 @@
             class="w-12 h-12 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors text-primary-foreground font-bold">→</button>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- PROCESSO E NUMERI (DA OPZIONE 1) -->
-    <section id="processo" class="py-24 md:py-32 bg-secondary">
+    <section id="processo" class="py-24 md:py-32 bg-background">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-2xl mx-auto mb-16 animate-fade-up scroll-elem">
           <p class="text-pool text-sm font-semibold tracking-[0.3em] uppercase mb-4">Il Nostro Metodo</p>
@@ -383,7 +401,7 @@
     <!-- STATISTICHE (DA OPZIONE 1 DENTRO IL LAYOUT DI OPZIONE 2) -->
     <section class="py-24 md:py-32 relative overflow-hidden bg-navy">
       <!-- Video Background -->
-      <video autoplay loop muted playsinline preload="auto" poster="assets/hero-pool.avif"
+      <video autoplay loop muted playsinline preload="auto" poster="assets/hero-foto.avif"
         class="absolute inset-0 w-full h-full object-cover">
         <source src="assets/output.webm" type="video/webm">
         <source src="assets/output.mp4" type="video/mp4"> <!-- Fallback for Safari -->
@@ -392,26 +410,21 @@
       <div class="absolute inset-0 bg-navy/60 backdrop-blur-[2px]"></div>
 
       <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12" id="stats-container">
-          <div class="text-center animate-fade-up scroll-elem">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="stats-container">
+          <!-- <div class="text-center animate-fade-up scroll-elem">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
                 data-target="24">0</span></p>
             <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Progetti Avviati</p>
-          </div>
-          <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 100ms;">
-            <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="1">0</span></p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anno Fondazione</p>
-          </div>
+          </div> -->
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 200ms;">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
-                data-target="20">0</span></p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anni Garanzia Scocca</p>
+                data-target="10">0</span></p>
+            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Anni Garanzia</p>
           </div>
           <div class="text-center animate-fade-up scroll-elem" style="transition-delay: 300ms;">
             <p class="text-5xl md:text-6xl font-black text-primary-foreground mb-2"><span class="counter"
                 data-target="100">0</span>%</p>
-            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Materiali italiani</p>
+            <p class="text-pool text-sm font-medium tracking-widest uppercase mt-3">Materiali di Qualità</p>
           </div>
         </div>
       </div>
@@ -428,242 +441,195 @@
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-5 gap-12">
-          <div class="lg:col-span-3 animate-fade-left scroll-elem">
-            <form id="contact-form" class="bg-card rounded-2xl shadow-card p-8 space-y-6">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label for="nome" class="block text-sm font-semibold text-navy mb-2">Nome *</label>
-                  <input id="nome" type="text" required minlength="2" maxlength="50"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
-                    placeholder="Mario">
-                </div>
-                <div>
-                  <label for="cognome" class="block text-sm font-semibold text-navy mb-2">Cognome *</label>
-                  <input id="cognome" type="text" required minlength="2" maxlength="50"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
-                    placeholder="Rossi">
-                </div>
-              </div>
-
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label for="email" class="block text-sm font-semibold text-navy mb-2">Email *</label>
-                  <input id="email" type="email" required maxlength="255"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
-                    placeholder="mario@email.com">
-                </div>
-                <div>
-                  <label for="telefono" class="block text-sm font-semibold text-navy mb-2">Telefono *</label>
-                  <input id="telefono" type="tel" required maxlength="20"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
-                    placeholder="+39 333 1234567">
-                </div>
-              </div>
-
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label for="tipo" class="block text-sm font-semibold text-navy mb-2">Tipo di Piscina</label>
-                  <select id="tipo"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all">
-                    <option value="">Seleziona...</option>
-                    <option value="interrata">Piscina Interrata</option>
-                    <option value="infinity">Piscina Infinity</option>
-                    <option value="indoor">Piscina Indoor</option>
-                    <option value="hotel">Piscina Hotel/Resort</option>
-                    <option value="spa">Spa & Wellness</option>
-                    <option value="ristrutturazione">Ristrutturazione</option>
-                    <option value="altro">Altro</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="budget" class="block text-sm font-semibold text-navy mb-2">Budget Stimato</label>
-                  <select id="budget"
-                    class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all">
-                    <option value="">Seleziona...</option>
-                    <option value="20-40k">€20.000 — €40.000</option>
-                    <option value="40-70k">€40.000 — €70.000</option>
-                    <option value="70-100k">€70.000 — €100.000</option>
-                    <option value="100k+">Oltre €100.000</option>
-                  </select>
-                </div>
-              </div>
-
+        <!-- Form centrato -->
+        <div class="max-w-3xl mx-auto animate-fade-up scroll-elem">
+          <form id="contact-form" class="bg-card rounded-2xl shadow-card p-8 md:p-10 space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <label for="messaggio" class="block text-sm font-semibold text-navy mb-2">Messaggio *</label>
-                <textarea id="messaggio" required minlength="10" maxlength="1000" rows="4"
-                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all resize-none"
-                  placeholder="Descrivi il tuo progetto ideale..."></textarea>
+                <label for="nome" class="block text-sm font-semibold text-navy mb-2">Nome *</label>
+                <input id="nome" type="text" required minlength="2" maxlength="50"
+                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
+                  placeholder="Mario">
               </div>
-
-              <div class="flex items-start gap-4 animate-fade-up scroll-elem">
-                <input id="privacy" type="checkbox" required
-                  class="mt-1 w-5 h-5 rounded border-border text-pool focus:ring-pool focus:ring-offset-background transition-all cursor-pointer">
-                <label for="privacy" class="text-sm text-muted-foreground leading-relaxed">
-                  Dichiaro di aver letto l’<a href="privacy.html" target="_blank"
-                    class="text-pool font-semibold hover:underline">informativa sulla privacy</a> e acconsento al
-                  trattamento dei dati personali ai sensi del GDPR. *
-                </label>
+              <div>
+                <label for="cognome" class="block text-sm font-semibold text-navy mb-2">Cognome *</label>
+                <input id="cognome" type="text" required minlength="2" maxlength="50"
+                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
+                  placeholder="Rossi">
               </div>
+            </div>
 
-              <button type="submit" id="submit-btn"
-                class="w-full py-4 rounded-xl bg-pool text-primary-foreground font-bold text-lg tracking-wide hover:bg-pool-glow transition-all duration-300 hover:shadow-card-hover hover:scale-[1.02]">
-                Invia Richiesta
-              </button>
-              <p id="success-msg" class="text-center text-pool font-medium hidden">Grazie! Ti ricontatteremo al più
-                presto.</p>
-            </form>
-          </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-navy mb-2">Email *</label>
+              <input id="email" type="email" required maxlength="255"
+                class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all"
+                placeholder="mario@email.com">
+            </div>
 
-          <script>
-            document.addEventListener('DOMContentLoaded', () => {
-              // Supabase Configuration
-              const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
-              const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
-              const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <label for="tipo" class="block text-sm font-semibold text-navy mb-2">Tipo di Piscina</label>
+                <select id="tipo"
+                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all">
+                  <option value="">Seleziona...</option>
+                  <option value="a sfioro">A sfioro</option>
+                  <option value="a skimmer">A skimmer</option>
+                  <option value="sottobordo">Sottobordo</option>
+                  <option value="interrate">Interrate</option>
+                  <option value="fuoriterra">Fuoriterra</option>
+                  <option value="yacuzi">Yacuzi</option>
+                </select>
+              </div>
+              <div>
+                <label for="grandezza" class="block text-sm font-semibold text-navy mb-2">Grandezza</label>
+                <select id="grandezza"
+                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all">
+                  <option value="">Seleziona...</option>
+                  <option value="3x6m">3x6m</option>
+                  <option value="4x8m">4x8m</option>
+                  <option value="5x10m">5x10m</option>
+                  <option value="personalizzata">Personalizzata (specificare)</option>
+                </select>
+              </div>
+              <div>
+                <label for="budget" class="block text-sm font-semibold text-navy mb-2">Budget Stimato</label>
+                <select id="budget"
+                  class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all">
+                  <option value="">Seleziona...</option>
+                  <option value="20-40k">€20.000 — €40.000</option>
+                  <option value="40-70k">€40.000 — €70.000</option>
+                  <option value="70-100k">€70.000 — €100.000</option>
+                  <option value="100k+">Oltre €100.000</option>
+                </select>
+              </div>
+            </div>
 
-              console.log(_supabase);
+            <div>
+              <label for="messaggio" class="block text-sm font-semibold text-navy mb-2">Ulteriori informazioni</label>
+              <textarea id="messaggio" required minlength="10" maxlength="1000" rows="4"
+                class="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-pool focus:border-pool outline-none transition-all resize-none"
+                placeholder="Descrivi il tuo progetto ideale..."></textarea>
+            </div>
 
-              // Form Submission Logic
-              document.getElementById('contact-form').addEventListener('submit', async function (e) {
-                e.preventDefault();
-                const submitBtn = document.getElementById('submit-btn');
-                const successMsg = document.getElementById('success-msg');
+            <div class="flex items-start gap-4">
+              <input id="privacy" type="checkbox" required
+                class="mt-1 w-5 h-5 rounded border-border text-pool focus:ring-pool focus:ring-offset-background transition-all cursor-pointer">
+              <label for="privacy" class="text-sm text-muted-foreground leading-relaxed">
+                Dichiaro di aver letto l'<a href="privacy.html" target="_blank"
+                  class="text-pool font-semibold hover:underline">informativa sulla privacy</a> e acconsento al
+                trattamento dei dati personali ai sensi del GDPR. *
+              </label>
+            </div>
 
-                const formData = {
-                  nome: document.getElementById('nome').value,
-                  cognome: document.getElementById('cognome').value,
-                  email: document.getElementById('email').value,
-                  telefono: document.getElementById('telefono').value,
-                  tipo: document.getElementById('tipo').value,
-                  budget: document.getElementById('budget').value,
-                  messaggio: document.getElementById('messaggio').value,
-                  privacy_accepted: document.getElementById('privacy').checked,
-                  privacy_policy_version: 'v1.0 (Marzo 2026)',
-                  privacy_timestamp: new Date().toISOString()
-                };
+            <button type="submit" id="submit-btn"
+              class="w-full py-4 rounded-xl bg-pool text-primary-foreground font-bold text-lg tracking-wide hover:bg-pool-glow transition-all duration-300 hover:shadow-card-hover hover:scale-[1.02]">
+              Invia Richiesta
+            </button>
+            <p id="success-msg" class="text-center text-pool font-medium hidden">Grazie! Ti ricontatteremo al più
+              presto.</p>
+          </form>
+        </div>
 
-                // De-activate button during sending
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Invio in corso...';
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // Supabase Configuration
+            const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
+            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-                try {
-                  // Save to Supabase
-                  const { error } = await _supabase
-                    .from('form_preventivi')
-                    .insert([formData]);
+            console.log(_supabase);
 
-                  if (error) throw error;
+            // Form Submission Logic
+            document.getElementById('contact-form').addEventListener('submit', async function (e) {
+              e.preventDefault();
+              const submitBtn = document.getElementById('submit-btn');
+              const successMsg = document.getElementById('success-msg');
 
-                  // Feedback success
-                  submitBtn.classList.add('hidden');
-                  successMsg.classList.remove('hidden');
-                  this.reset();
+              const info_aggiuntive = document.getElementById('messaggio').value;
+              const grand_el = document.getElementById('grandezza');
+              const grandezza_val = grand_el ? grand_el.value : '';
+              const grandezza_str = grandezza_val ? 'Grandezza: ' + grandezza_val + '\n' : '';
+              const final_messaggio = grandezza_str + info_aggiuntive;
 
-                  setTimeout(() => {
-                    submitBtn.classList.remove('hidden');
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'Invia Richiesta';
-                    successMsg.classList.add('hidden');
-                  }, 5000);
+              const formData = {
+                nome: document.getElementById('nome').value,
+                cognome: document.getElementById('cognome').value,
+                email: document.getElementById('email').value,
+                tipo: document.getElementById('tipo').value,
+                budget: document.getElementById('budget').value,
+                messaggio: final_messaggio
+              };
 
-                } catch (error) {
-                  console.error('Error saving lead:', error.message);
-                  alert('Si è verificato un errore nell\'invio della richiesta. Riprova più tardi.');
+              // De-activate button during sending
+              submitBtn.disabled = true;
+              submitBtn.innerText = 'Invio in corso...';
+
+              try {
+                // Save to Supabase
+                const { error } = await _supabase
+                  .from('form_preventivi')
+                  .insert([formData]);
+
+                if (error) throw error;
+
+                // Feedback success
+                submitBtn.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+                this.reset();
+
+                setTimeout(() => {
+                  submitBtn.classList.remove('hidden');
                   submitBtn.disabled = false;
                   submitBtn.innerText = 'Invia Richiesta';
-                }
-              });
-            });
-          </script>
+                  successMsg.classList.add('hidden');
+                }, 5000);
 
-          <div class="lg:col-span-2 animate-fade-right scroll-elem space-y-8">
-            <div class="bg-card rounded-2xl shadow-card p-8 space-y-6">
-              <div class="flex items-start gap-4">
-                <div class="w-11 h-11 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
-                    data-lucide="map-pin" class="w-5 h-5 text-pool"></i></div>
-                <div>
-                  <p class="text-sm font-semibold text-navy">Sede</p>
-                  <p class="text-muted-foreground">Bergamo (BG), Italia</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-11 h-11 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
-                    data-lucide="phone" class="w-5 h-5 text-pool"></i></div>
-                <div>
-                  <p class="text-sm font-semibold text-navy">Telefono</p>
-                  <p class="text-muted-foreground">+39 035 XXX XXXX</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-11 h-11 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
-                    data-lucide="mail" class="w-5 h-5 text-pool"></i></div>
-                <div>
-                  <p class="text-sm font-semibold text-navy">Email</p>
-                  <p class="text-muted-foreground">info@bluelitepiscine.it</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-11 h-11 shrink-0 rounded-xl bg-pool/10 flex items-center justify-center"><i
-                    data-lucide="clock" class="w-5 h-5 text-pool"></i></div>
-                <div>
-                  <p class="text-sm font-semibold text-navy">Orari</p>
-                  <p class="text-muted-foreground">Lun–Ven: 9:00–18:00</p>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-2xl overflow-hidden shadow-card h-64 bg-muted flex items-center justify-center">
-              <!-- <iframe title="Posizione Blu élite Piscine"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89269.83984368564!2d9.593880410766023!3d45.69614451006509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47815104ec501865%3A0x6b8eb08447817eb4!2sBergamo%20BG!5e0!3m2!1sit!2sit!4v1700000000000"
-                width="100%" height="100%" style="border: 0" allowfullscreen loading="lazy"></iframe> -->
-            </div>
-          </div>
-        </div>
+              } catch (error) {
+                console.error('Error saving lead:', error.message);
+                alert('Si è verificato un errore nell\'invio della richiesta. Riprova più tardi.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Invia Richiesta';
+              }
+            });
+          });
+        </script>
+
+
+
       </div>
     </section>
   </main>
 
-  <footer class="bg-navy py-20 relative overflow-hidden">
+  <footer class="bg-navy py-12 relative overflow-hidden">
     <!-- Subtle Gradient Ornament -->
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-pool/10 blur-[120px] rounded-full pointer-events-none"></div>
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
         <!-- Brand & Description -->
         <div class="space-y-6">
           <a href="#" class="group flex items-center gap-3">
-            <img src="assets/logo-bluelite.png" alt="Blu élite Logo" class="h-10 w-auto">
-            <span class="font-serif text-2xl tracking-wide text-primary-foreground">Blu élite</span>
+            <img src="assets/output-white.png" alt="Blu Elite Piscine Logo" class="h-10 w-auto">
+            <span class="font-serif text-2xl tracking-wide text-primary-foreground">Blu Elite Piscine</span>
           </a>
           <p class="text-primary-foreground/60 leading-relaxed text-sm max-w-xs">
             Eccellenza bergamasca nella progettazione e costruzione di piscine di lusso. Trasformiamo i vostri spazi in
             oasi di benessere senza tempo.
           </p>
-          <div class="flex gap-4">
-            <a href="#"
-              class="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-pool hover:border-pool hover:text-primary-foreground transition-all duration-300"
-              aria-label="Facebook">
-              <i data-lucide="facebook" class="w-5 h-5"></i>
-            </a>
-            <a href="#"
-              class="w-10 h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-pool hover:border-pool hover:text-primary-foreground transition-all duration-300"
-              aria-label="Instagram">
-              <i data-lucide="instagram" class="w-5 h-5"></i>
-            </a>
-          </div>
+
         </div>
 
         <!-- Quick Links -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Navigazione</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li><a href="#chi-siamo" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Il
                 Nostro Metodo</a></li>
             <li><a href="#servizi" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Servizi
                 Esclusivi</a></li>
-            <li><a href="#portfolio" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">I
-                Nostri Progetti</a></li>
+            <!-- <li><a href="#portfolio" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">I
+                Nostri Progetti</a></li> -->
             <li><a href="#processo" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Fasi
                 Realizzative</a></li>
             <li><a href="#contatti" class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">Area
@@ -674,16 +640,12 @@
         <!-- Contact Info -->
         <div>
           <h4 class="text-primary-foreground font-bold mb-6 uppercase tracking-widest text-xs">Contatti</h4>
-          <ul class="space-y-4">
+          <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <i data-lucide="map-pin" class="w-5 h-5 text-pool shrink-0"></i>
-              <span class="text-primary-foreground/60 text-sm">Bergamo (BG), Italia</span>
+              <span class="text-primary-foreground/60 text-sm">Via Cinque Martiri, 1 Vertova (BG)</span>
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="phone" class="w-5 h-5 text-pool shrink-0"></i>
-              <a href="tel:+390351234567"
-                class="text-primary-foreground/60 hover:text-pool transition-colors text-sm">+39 035 XXX XXXX</a>
-            </li>
+
             <li class="flex items-center gap-3">
               <i data-lucide="mail" class="w-5 h-5 text-pool shrink-0"></i>
               <a href="mailto:info@bluelitepiscine.it"
@@ -696,14 +658,14 @@
 
       <!-- Bottom Bar -->
       <div
-        class="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p class="text-primary-foreground/40 text-[11px] tracking-wide uppercase">
-          © 2026 Blu élite Piscine — P.IVA ITXXXXXXXXXXX — Realizzato per l'eccellenza
+        class="border-t border-primary-foreground/10 pt-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <p class="text-primary-foreground/50 text-xs tracking-wide uppercase">
+          © 2026 Blu Elite Piscine — P.IVA 04915780169
         </p>
-        <div class="flex gap-8">
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3">
           <a href="privacy.html" target="_blank"
-            class="text-primary-foreground/30 text-[11px] hover:text-pool transition-colors uppercase tracking-widest">
-            Privacy Policy e Cookie Policy
+            class="text-primary-foreground/80 text-xs font-semibold hover:text-pool transition-all uppercase tracking-widest border-b border-white/10 hover:border-pool pb-0.5">
+            Privacy & Cookie Policy
           </a>
         </div>
       </div>
@@ -713,93 +675,115 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Inizializza le icone lucide (usate in servizi, ecc)
-      lucide.createIcons();
+      try {
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Lucide icons error:', err);
+      }
 
-      // 1. GESTIONE NAVBAR SCROLL & ACTIVE LINKS
+      // 1. GESTIONE NAVBAR & MENU MOBILE
       const navbar = document.getElementById('navbar');
+      const logoImg = document.getElementById('logo-img');
       const logoText = document.getElementById('logo-text');
       const navLinks = document.querySelectorAll('.nav-link');
       const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
 
-      function updateHeaderTheme() {
-        const isScrolled = window.scrollY > 50;
-        const forceNavy = isScrolled || menuOpen;
-
-        if (forceNavy) {
-          navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          navbar.classList.remove('bg-transparent', 'py-6');
-          logoText.style.color = 'hsl(213, 80%, 22%)'; // Navy
-          navLinks.forEach(l => {
-            l.classList.remove('text-primary-foreground/90');
-            l.classList.add('text-navy');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-white');
-            b.classList.add('bg-navy');
-          });
-        } else {
-          navbar.classList.add('bg-transparent', 'py-6');
-          navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-card', 'py-3');
-          logoText.style.color = 'white';
-          navLinks.forEach(l => {
-            l.classList.remove('text-navy');
-            l.classList.add('text-primary-foreground/90');
-          });
-          bars.forEach(b => {
-            b.classList.remove('bg-navy');
-            b.classList.add('bg-white');
-          });
-        }
-      }
-
-      window.addEventListener('scroll', updateHeaderTheme);
-
-      // 2. GESTIONE MENU MOBILE
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileLinks = document.querySelectorAll('.mobile-link');
       let menuOpen = false;
 
+      function updateHeaderTheme() {
+        if (!navbar) return;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isScrolled = scrollTop > 50;
+        const forceNavy = isScrolled || menuOpen;
+
+        if (forceNavy) {
+          navbar.classList.add('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          navbar.classList.remove('bg-transparent', 'py-6');
+          if (logoImg) logoImg.src = 'assets/logo-blue.png';
+          if (logoText) logoText.style.color = '#08306A';
+          navLinks.forEach(l => {
+            l.style.color = '#08306A';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#08306A';
+            }
+          });
+        } else {
+          navbar.classList.add('bg-transparent', 'py-6');
+          navbar.classList.remove('bg-white', 'backdrop-blur-md', 'shadow-card', 'py-3');
+          if (logoImg) logoImg.src = 'assets/output-white.png';
+          if (logoText) logoText.style.color = '#ffffff';
+          navLinks.forEach(l => {
+            l.style.color = '#ffffff';
+          });
+          bars.forEach(b => {
+            if (b) {
+              b.style.backgroundColor = '#ffffff';
+            }
+          });
+        }
+      }
+
+      try {
+        updateHeaderTheme();
+      } catch (err) {
+        console.error('Initial theme update error:', err);
+      }
+
+      window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+
       function toggleMenu() {
+        if (!mobileMenu) return;
         menuOpen = !menuOpen;
         updateHeaderTheme();
 
         if (menuOpen) {
           mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
           mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
-          // Perfect X: Bar 1 moves down, Bar 3 moves up, Bar 2 vanishes
-          bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
-          bars[1].style.opacity = '0';
-          bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
+          if (bars[0]) bars[0].style.transform = 'translateY(8.5px) rotate(45deg)';
+          if (bars[1]) bars[1].style.opacity = '0';
+          if (bars[2]) bars[2].style.transform = 'translateY(-8.5px) rotate(-45deg)';
         } else {
           mobileMenu.classList.add('opacity-0', 'pointer-events-none');
           mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-          bars[0].style.transform = 'translateY(0) rotate(0)';
-          bars[1].style.opacity = '1';
-          bars[2].style.transform = 'translateY(0) rotate(0)';
+          if (bars[0]) bars[0].style.transform = 'translateY(0) rotate(0)';
+          if (bars[1]) bars[1].style.opacity = '1';
+          if (bars[2]) bars[2].style.transform = 'translateY(0) rotate(0)';
         }
       }
-      mobileMenuBtn.addEventListener('click', toggleMenu);
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
       mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
       // 3. ANIMAZIONI DI SCROLL (Intersection Observer)
-      document.querySelectorAll('.animate-scroll').forEach(el => {
-        el.classList.add('animate-fade-up');
-      });
+      let scrollObserver;
+      try {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        scrollObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
 
-      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-      const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+        document.querySelectorAll('.animate-scroll').forEach(el => {
+          el.classList.add('animate-fade-up');
         });
-      }, observerOptions);
 
-      document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
-        scrollObserver.observe(el);
-      });
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          scrollObserver.observe(el);
+        });
+      } catch (err) {
+        console.error('Observer error:', err);
+        document.querySelectorAll('.scroll-elem, .animate-scroll').forEach(el => {
+          el.classList.add('visible');
+        });
+      }
 
       // 4. GENERAZIONE PORTFOLIO E LIGHTBOX
       const projects = [
@@ -813,68 +797,71 @@
 
       const portfolioGrid = document.getElementById('portfolio-grid');
       const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const lightboxType = document.getElementById('lightbox-type');
-      const lightboxTitle = document.getElementById('lightbox-title');
-      const lightboxLoc = document.getElementById('lightbox-location');
       let currentLightboxIndex = 0;
 
-      projects.forEach((p, i) => {
-        const button = document.createElement('button');
-        button.className = 'group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-scale-in scroll-elem cursor-pointer';
-        button.style.transitionDelay = `${i * 100}ms`;
-        button.innerHTML = `
-        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-left">
-          <p class="text-pool text-xs font-semibold tracking-widest uppercase">${p.type}</p>
-          <h3 class="text-primary-foreground text-xl font-bold">${p.title}</h3>
-          <p class="text-primary-foreground/70 text-sm">${p.location}</p>
-        </div>
-      `;
-        button.onclick = () => openLightbox(i);
-        portfolioGrid.appendChild(button);
-        // Ensure the dynamic button is observed by the scroll animation observer
-        scrollObserver.observe(button);
-      });
+      if (portfolioGrid) {
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxType = document.getElementById('lightbox-type');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxLoc = document.getElementById('lightbox-location');
 
-      function openLightbox(index) {
-        currentLightboxIndex = index;
-        updateLightboxContent();
-        lightbox.classList.remove('hidden');
-        setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        projects.forEach((p, i) => {
+          const button = document.createElement('button');
+          button.className = 'group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 animate-scale-in scroll-elem cursor-pointer';
+          button.style.transitionDelay = `${i * 100}ms`;
+          button.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 text-left">
+            <p class="text-pool text-xs font-semibold tracking-widest uppercase">${p.type}</p>
+            <h3 class="text-primary-foreground text-xl font-bold">${p.title}</h3>
+            <p class="text-primary-foreground/70 text-sm">${p.location}</p>
+          </div>
+        `;
+          button.onclick = () => openLightbox(i);
+          portfolioGrid.appendChild(button);
+          scrollObserver.observe(button);
+        });
+
+        function openLightbox(index) {
+          currentLightboxIndex = index;
+          updateLightboxContent();
+          lightbox.classList.remove('hidden');
+          setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        }
+
+        function updateLightboxContent() {
+          const p = projects[currentLightboxIndex];
+          lightboxImg.src = p.img;
+          lightboxType.textContent = p.type;
+          lightboxTitle.textContent = p.title;
+          lightboxLoc.textContent = p.location;
+        }
+
+        function closeLightbox() {
+          lightbox.classList.add('opacity-0');
+          setTimeout(() => lightbox.classList.add('hidden'), 300);
+        }
+
+        const closeBtn = document.getElementById('lightbox-close');
+        if (closeBtn) closeBtn.onclick = closeLightbox;
+        if (lightbox) lightbox.onclick = closeLightbox;
+        const lbContent = document.getElementById('lightbox-content');
+        if (lbContent) lbContent.onclick = (e) => e.stopPropagation();
+
+        const prevBtn = document.getElementById('lightbox-prev');
+        if (prevBtn) prevBtn.onclick = (e) => {
+          e.stopPropagation();
+          currentLightboxIndex = (currentLightboxIndex - 1 + projects.length) % projects.length;
+          updateLightboxContent();
+        };
+        const nextBtn = document.getElementById('lightbox-next');
+        if (nextBtn) nextBtn.onclick = (e) => {
+          e.stopPropagation();
+          currentLightboxIndex = (currentLightboxIndex + 1) % projects.length;
+          updateLightboxContent();
+        };
       }
-
-      function updateLightboxContent() {
-        const p = projects[currentLightboxIndex];
-        lightboxImg.src = p.img;
-        lightboxType.textContent = p.type;
-        lightboxTitle.textContent = p.title;
-        lightboxLoc.textContent = p.location;
-      }
-
-      function closeLightbox() {
-        lightbox.classList.add('opacity-0');
-        setTimeout(() => lightbox.classList.add('hidden'), 300);
-      }
-
-      const closeBtn = document.getElementById('lightbox-close');
-      if (closeBtn) closeBtn.onclick = closeLightbox;
-      lightbox.onclick = closeLightbox;
-      document.getElementById('lightbox-content').onclick = (e) => e.stopPropagation();
-
-      const prevBtn = document.getElementById('lightbox-prev');
-      if (prevBtn) prevBtn.onclick = (e) => {
-        e.stopPropagation();
-        currentLightboxIndex = (currentLightboxIndex - 1 + projects.length) % projects.length;
-        updateLightboxContent();
-      };
-      const nextBtn = document.getElementById('lightbox-next');
-      if (nextBtn) nextBtn.onclick = (e) => {
-        e.stopPropagation();
-        currentLightboxIndex = (currentLightboxIndex + 1) % projects.length;
-        updateLightboxContent();
-      };
 
       // 5. COUNTERS STATISTICHE
       const counters = document.querySelectorAll('.counter');

@@ -6,15 +6,15 @@
 
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(213 80% 22%);
-  
+
   --color-primary: hsl(199 76% 54%);
   --color-primary-foreground: hsl(0 0% 100%);
-  
+
   --color-secondary: hsl(199 100% 95%);
-  
+
   --color-muted: hsl(199 30% 95%);
   --color-muted-foreground: hsl(213 20% 46%);
-  
+
   --color-card: hsl(0 0% 100%);
   --color-navy: hsl(213 80% 22%);
   --color-pool: hsl(199 76% 54%);
@@ -32,10 +32,17 @@
   --shadow-hero: 0 20px 60px -15px hsl(213 80% 22% / 0.3);
 
   @keyframes water-shimmer {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
   }
-  
+
   --animate-water-shimmer: water-shimmer 3s ease-in-out infinite;
 }
 
@@ -70,32 +77,96 @@
 }
 
 /* Visible States triggered by JS */
-.visible.animate-fade-up { opacity: 1; transform: translateY(0); }
-.visible.animate-fade-left { opacity: 1; transform: translateX(0); }
-.visible.animate-fade-right { opacity: 1; transform: translateX(0); }
-.visible.animate-scale-in { opacity: 1; transform: scale(1); }
+.visible.animate-fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.visible.animate-fade-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.visible.animate-fade-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.visible.animate-scale-in {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* Admin Dashboard specific styles */
-.dark body { background-color: #0c1a2b; color: #f8fafc; }
-.dark .bg-white { background-color: #162a41; border-color: #1e3a5a; }
-.dark .text-navy { color: #e2e8f0; }
-.dark .border-border { border-color: #1e3a5a; }
-.dark .bg-muted { background-color: #0f243a; }
-.dark .text-slate-500 { color: #94a3b8; }
-.dark .divide-border > * + * { border-color: #1e3a5a; }
-.dark tr:hover { background-color: #1e3a5a !important; }
+.dark body {
+  background-color: #0c1a2b;
+  color: #f8fafc;
+}
+
+.dark .bg-white {
+  background-color: #162a41;
+  border-color: #1e3a5a;
+}
+
+.dark .text-navy {
+  color: #e2e8f0;
+}
+
+.dark .border-border {
+  border-color: #1e3a5a;
+}
+
+.dark .bg-muted {
+  background-color: #0f243a;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8;
+}
+
+.dark .divide-border>*+* {
+  border-color: #1e3a5a;
+}
+
+.dark tr:hover {
+  background-color: #1e3a5a !important;
+}
 
 /* Date Filter Tabs Styles */
-.date-filter-btn { color: #94a3b8; }
-.date-filter-btn.active { background-color: #ffffff; color: #08306A; box-shadow: 0 4px 12px -2px rgba(8, 48, 106, 0.1); }
-.dark .date-filter-btn.active { background-color: #1e3a5a; color: #ffffff; }
+.date-filter-btn {
+  color: #94a3b8;
+}
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
-body { 
-  font-family: var(--font-sans); 
+.date-filter-btn.active {
+  background-color: #ffffff;
+  color: #08306A;
+  box-shadow: 0 4px 12px -2px rgba(8, 48, 106, 0.1);
+}
+
+.dark .date-filter-btn.active {
+  background-color: #1e3a5a;
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  zoom: 100%;
+  font-family: var(--font-sans);
   background-color: var(--color-background);
   color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+#hero {
+  zoom: 90%
+}
+
+* {
+  box-sizing: border-box;
 }

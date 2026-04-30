@@ -1,6 +1,5 @@
 User-agent: *
-Allow: /
 Disallow: /admin.html
 Disallow: /login.html
 
-Sitemap: https://www.bluelitepiscine.it/sitemap.xml
+Sitemap: https://bluelitepiscine.it/sitemap.xml
