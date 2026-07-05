@@ -18,6 +18,10 @@
     gtag('config', 'G-255623620');
   </script>
 
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fb75956b1c334e3ab08126902a957e4c"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blu Elite Piscine</title>
@@ -42,8 +46,6 @@
 
   <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
   <script defer src="scripts/lucide.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
-  <script defer src="scripts/supabase.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -282,7 +284,7 @@
             style="transition-delay: 500ms;">
             <div class="w-14 h-14 rounded-xl bg-pool/10 flex items-center justify-center mb-6"><i data-lucide="sparkles"
                 class="w-7 h-7 text-pool"></i></div>
-            <h3 class="text-xl font-bold text-navy mb-3">Yacuzi & Spa</h3>
+            <h3 class="text-xl font-bold text-navy mb-3">Jacuzzi & Spa</h3>
             <p class="text-muted-foreground leading-relaxed">Vasche idromassaggio e sistemi spa di lusso per un
               benessere esclusivo, tutto l'anno.</p>
           </div>
@@ -477,7 +479,7 @@
                   <option value="sottobordo">Sottobordo</option>
                   <option value="interrate">Interrate</option>
                   <option value="fuoriterra">Fuoriterra</option>
-                  <option value="yacuzi">Yacuzi</option>
+                  <option value="jacuzzi">Jacuzzi</option>
                 </select>
               </div>
               <div>
@@ -530,16 +532,23 @@
           </form>
         </div>
 
-        <script>
+        <script type="module">
+          import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js';
+          import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js';
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyDyPhBpew76J-XoTHc3sgLaYpGRMWeTgCc",
+            authDomain: "bluelite-piscine.firebaseapp.com",
+            projectId: "bluelite-piscine",
+            storageBucket: "bluelite-piscine.firebasestorage.app",
+            messagingSenderId: "825236277338",
+            appId: "1:825236277338:web:b0ecd8a2cbfe4af063b063"
+          };
+
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+
           document.addEventListener('DOMContentLoaded', () => {
-            // Supabase Configuration
-            const supabaseUrl = 'https://aawcklkfibqnejqjniil.supabase.co';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhd2NrbGtmaWJxbmVqcWpuaWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0OTYxNDEsImV4cCI6MjA4OTA3MjE0MX0.37s2Z1QeZgzErFOpwl2vxBv0PaKB19-BNOhYF3SqD1Q';
-            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-            console.log(_supabase);
-
-            // Form Submission Logic
             document.getElementById('contact-form').addEventListener('submit', async function (e) {
               e.preventDefault();
               const submitBtn = document.getElementById('submit-btn');
@@ -556,23 +565,19 @@
                 cognome: document.getElementById('cognome').value,
                 email: document.getElementById('email').value,
                 tipo: document.getElementById('tipo').value,
+                grandezza: document.getElementById('grandezza').value,
                 budget: document.getElementById('budget').value,
-                messaggio: final_messaggio
+                messaggio: document.getElementById('messaggio').value,
+                is_read: false,
+                created_at: serverTimestamp()
               };
 
-              // De-activate button during sending
               submitBtn.disabled = true;
               submitBtn.innerText = 'Invio in corso...';
 
               try {
-                // Save to Supabase
-                const { error } = await _supabase
-                  .from('form_preventivi')
-                  .insert([formData]);
+                await addDoc(collection(db, 'form_preventivi'), formData);
 
-                if (error) throw error;
-
-                // Feedback success
                 submitBtn.classList.add('hidden');
                 successMsg.classList.remove('hidden');
                 this.reset();
@@ -890,5 +895,4 @@
     });
   </script>
 </body>
-
 </html>

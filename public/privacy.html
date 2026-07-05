@@ -12,6 +12,11 @@
   </noscript>
 
   <script defer src="scripts/lucide.min.js"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fb75956b1c334e3ab08126902a957e4c"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,7 +28,7 @@
 
         <h1 class="text-3xl md:text-4xl font-bold text-navy mb-6">Informativa sul Trattamento dei Dati Personali
           (Privacy Policy)</h1>
-        <p class="mb-8 text-sm text-muted-foreground">Ultimo aggiornamento: Marzo 2026</p>
+        <p class="mb-8 text-sm text-muted-foreground">Ultimo aggiornamento: Aprile 2026</p>
 
         <p class="mb-6 leading-relaxed">
           La presente informativa descrive le modalità di gestione del sito web <strong class="text-navy">Blu Elite
@@ -79,10 +84,7 @@
         <p class="mb-4">Per fornire il nostro servizio e garantire i massimi standard di sicurezza, ci avvaliamo di
           infrastrutture tecniche che agiscono come Responsabili del Trattamento (Art. 28 GDPR):</p>
         <ul class="list-disc pl-6 mb-6 space-y-4 text-muted-foreground">
-          <li><strong class="text-navy">Supabase (Database):</strong> Utilizziamo Supabase come "cassaforte cloud" per
-            salvare i dati inviati tramite il modulo. I dati sono protetti da crittografia e sono ospitati fisicamente
-            su server situati all'interno dell'Unione Europea (Region: eu-west-1, Irlanda), garantendo la piena
-            conformità agli standard europei.</li>
+          <li><strong class="text-navy">Google Firebase / Firestore (Database e Autenticazione):</strong> Utilizziamo Google Firebase come infrastruttura cloud per salvare i dati inviati tramite il modulo di contatto e per gestire l'autenticazione dell'area amministrativa. Firebase è un servizio di Google LLC, coperto dal Data Processing Agreement (DPA) di Google e dal Data Privacy Framework (DPF) UE-USA. I dati sono protetti da crittografia in transito e a riposo. Per impostazione predefinita i dati possono essere ospitati su server Google negli Stati Uniti o in Europa a seconda della region configurata; il trattamento è coperto dalle Clausole Contrattuali Standard (SCC) approvate dalla Commissione Europea.</li>
           <li><strong class="text-navy">Cloudflare (Hosting e Sicurezza):</strong> Utilizziamo Cloudflare per ospitare
             il sito, difenderlo da attacchi e generare statistiche di visita (Cloudflare Web Analytics). Le statistiche
             sono completamente anonime dal momento della raccolta. Il trasferimento di eventuali dati tecnici verso gli
@@ -155,9 +157,6 @@
       }
     });
   </script>
-</body>
-
-</html>
 </body>
 
 </html>
